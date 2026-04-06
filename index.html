@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SPEKT — Konsulting · AI · Coaching · 3D-scanning</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* ── Reset & Base ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --c1: #00c4a0;
+      --c2: #0891b2;
+      --c3: #38bdf8;
+      --c4: #67e8f9;
+      --c5: #2dd4bf;
+      --dark:  #050d10;
+      --dark2: #081318;
+      --dark3: #0c1d24;
+      --text:  #dff0f5;
+      --muted: #4d7f94;
+      --mono: 'JetBrains Mono', monospace;
+      --sans: 'Inter', system-ui, sans-serif;
+      --radius: 12px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--dark);
+      color: var(--text);
+      font-family: var(--sans);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Dot-grid background ──────────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(0,196,160,0.12) 1px, transparent 1px);
+      background-size: 32px 32px;
+      pointer-events: none;
+      z-index: 0;
+    }
+    /* Scanline overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.04) 2px,
+        rgba(0,0,0,0.04) 4px
+      );
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── NAV ──────────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 48px;
+      background: rgba(5,13,16,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0,196,160,0.1);
+    }
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      background: linear-gradient(90deg, var(--c1), var(--c4));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .nav-logo::before {
+      content: '> ';
+      color: var(--c1);
+      -webkit-text-fill-color: var(--c1);
+    }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .nav-links a { color: var(--muted); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--c4); }
+    .nav-cta {
+      font-family: var(--mono);
+      padding: 9px 22px;
+      border-radius: 4px;
+      background: transparent;
+      border: 1px solid var(--c1);
+      color: var(--c1);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-cta:hover { background: var(--c1); color: var(--dark); }
+
+    /* ── HERO ─────────────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 180px 24px 120px;
+      position: relative;
+      overflow: hidden;
+    }
+    /* Hero grid overlay */
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,196,160,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,196,160,0.05) 1px, transparent 1px);
+      background-size: 80px 80px;
+      pointer-events: none;
+    }
+    .hero-glow {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+    }
+    .glow-teal { width: 600px; height: 600px; background: rgba(0,196,160,0.13); top: -80px; left: -80px; }
+    .glow-blue { width: 500px; height: 500px; background: rgba(8,145,178,0.16); top: 60px; right: -80px; }
+    .glow-cyan { width: 400px; height: 400px; background: rgba(103,232,249,0.08); bottom: 0; left: 40%; }
+
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      color: var(--c1);
+      margin-bottom: 24px;
+      font-weight: 500;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-eyebrow .cursor {
+      display: inline-block;
+      width: 8px; height: 1em;
+      background: var(--c1);
+      margin-left: 4px;
+      vertical-align: text-bottom;
+      animation: blink 1.1s step-end infinite;
+    }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+    .hero h1 {
+      font-family: var(--sans);
+      font-size: clamp(2.8rem, 7.5vw, 6.5rem);
+      font-weight: 900;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, #ffffff 25%, var(--c3) 60%, var(--c4) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      padding-bottom: 0.1em;
+      margin-bottom: 28px;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-sub {
+      font-size: clamp(0.95rem, 2vw, 1.2rem);
+      color: var(--muted);
+      max-width: 560px;
+      margin: 0 auto 44px;
+      line-height: 1.8;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-sub strong { color: var(--text); }
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+    .btn-primary {
+      font-family: var(--mono);
+      padding: 14px 36px;
+      border-radius: 4px;
+      background: linear-gradient(135deg, var(--c1), var(--c2));
+      color: var(--dark);
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 0 30px rgba(0,196,160,0.3);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 50px rgba(0,196,160,0.5); }
+    .btn-ghost {
+      font-family: var(--mono);
+      padding: 14px 36px;
+      border-radius: 4px;
+      border: 1px solid rgba(0,196,160,0.3);
+      color: var(--c4);
+      font-weight: 500;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--c4); background: rgba(103,232,249,0.05); }
+
+    /* ── SCROLL INDICATOR ─────────────────────────────────────── */
+    .scroll-hint {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      z-index: 1;
+    }
+    .scroll-line {
+      width: 1px; height: 48px;
+      background: linear-gradient(to bottom, var(--c1), transparent);
+      animation: scrollpulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollpulse {
+      0%, 100% { opacity: 0.3; transform: scaleY(1); }
+      50%       { opacity: 1;   transform: scaleY(0.6); }
+    }
+
+    /* ── SECTION COMMONS ──────────────────────────────────────── */
+    section { position: relative; z-index: 1; }
+    .section-inner { max-width: 1200px; margin: 0 auto; padding: 100px 24px; }
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--c1);
+      font-weight: 500;
+      margin-bottom: 14px;
+    }
+    .section-label::before { content: '// '; opacity: 0.5; }
+    .section-title {
+      font-size: clamp(1.9rem, 4vw, 2.9rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+    .section-desc {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 560px;
+      margin-bottom: 56px;
+      line-height: 1.8;
+    }
+
+    /* ── SERVICES ─────────────────────────────────────────────── */
+    #services { background: var(--dark2); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    .service-card {
+      background: var(--dark3);
+      border-radius: var(--radius);
+      padding: 36px 30px;
+      border: 1px solid rgba(255,255,255,0.05);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    }
+    /* Top accent line */
+    .service-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .sc-sales::after  { background: linear-gradient(90deg, var(--c1), transparent); }
+    .sc-3d::after     { background: linear-gradient(90deg, var(--c2), transparent); }
+    .sc-ai::after     { background: linear-gradient(90deg, var(--c3), transparent); }
+    .sc-coach::after  { background: linear-gradient(90deg, var(--c5), transparent); }
+
+    .service-card:hover { transform: translateY(-5px); }
+    .service-card:hover::after { opacity: 1; }
+
+    .sc-sales:hover { border-color: rgba(0,196,160,0.35);  box-shadow: 0 20px 50px rgba(0,196,160,0.12); }
+    .sc-3d:hover    { border-color: rgba(8,145,178,0.4);   box-shadow: 0 20px 50px rgba(8,145,178,0.12); }
+    .sc-ai:hover    { border-color: rgba(56,189,248,0.35); box-shadow: 0 20px 50px rgba(56,189,248,0.12); }
+    .sc-coach:hover { border-color: rgba(45,212,191,0.35); box-shadow: 0 20px 50px rgba(45,212,191,0.12); }
+
+    .service-tag {
+      position: absolute;
+      top: 18px; right: 18px;
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 2px;
+      background: rgba(0,196,160,0.08);
+      border: 1px solid rgba(0,196,160,0.15);
+      color: var(--c1);
+    }
+    .service-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      margin-top: 8px;
+    }
+    .service-desc {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.75;
+      margin-bottom: 28px;
+    }
+    .service-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: gap 0.2s;
+    }
+    .service-link:hover { gap: 10px; }
+    .sl-teal   { color: var(--c1); }
+    .sl-blue   { color: var(--c2); }
+    .sl-sky    { color: var(--c3); }
+    .sl-cyan   { color: var(--c4); }
+    .sl-mint   { color: var(--c5); }
+
+    /* ── 3D SCANNING FEATURE ──────────────────────────────────── */
+    #scanning {
+      background: linear-gradient(135deg, #030e14 0%, #051520 50%, #030c15 100%);
+      border-top: 1px solid rgba(8,145,178,0.15);
+      border-bottom: 1px solid rgba(8,145,178,0.15);
+    }
+    .scanning-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 100px 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    @media (max-width: 800px) { .scanning-inner { grid-template-columns: 1fr; gap: 40px; } }
+    .scanning-visual {
+      position: relative;
+      aspect-ratio: 4/3;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: linear-gradient(135deg, #041420, #062840);
+      border: 1px solid rgba(8,145,178,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .scanning-grid-lines {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(8,145,178,0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(8,145,178,0.1) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .scan-pulse {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(8,145,178,0.35);
+      animation: pulse 3s ease-in-out infinite;
+    }
+    .scan-pulse:nth-child(2) { width: 160px; height: 160px; }
+    .scan-pulse:nth-child(3) { width: 260px; height: 260px; animation-delay: 0.6s; }
+    .scan-pulse:nth-child(4) { width: 360px; height: 360px; animation-delay: 1.2s; }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.5; transform: scale(1); }
+      50%       { opacity: 0.1; transform: scale(1.04); }
+    }
+    .scanning-visual-inner { text-align: center; position: relative; z-index: 1; }
+    .scan-label {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--c2);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .scan-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--mono);
+      padding: 14px 34px;
+      border-radius: 4px;
+      background: linear-gradient(135deg, var(--c2), var(--c1));
+      color: var(--dark);
+      font-weight: 700;
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 32px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 0 30px rgba(8,145,178,0.3);
+    }
+    .scan-cta:hover { transform: translateY(-2px); box-shadow: 0 0 50px rgba(8,145,178,0.5); }
+    .stat-row { display: flex; gap: 44px; margin-top: 44px; }
+    .stat-number {
+      font-family: var(--mono);
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, var(--c2), var(--c4));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    /* ── APPS / PORTFOLIO ─────────────────────────────────────── */
+    #portfolio { background: var(--dark); }
+    .portfolio-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 44px;
+    }
+    .tab-btn {
+      font-family: var(--mono);
+      padding: 8px 20px;
+      border-radius: 4px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: transparent;
+      color: var(--muted);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .tab-btn:hover, .tab-btn.active {
+      background: var(--c2);
+      border-color: var(--c2);
+      color: var(--dark);
+    }
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 18px;
+    }
+    .app-card {
+      background: var(--dark3);
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,0.05);
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+      cursor: pointer;
+      display: none;
+    }
+    .app-card.visible { display: flex; flex-direction: column; }
+    .app-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      border-color: rgba(0,196,160,0.2);
+    }
+    .app-thumb {
+      height: 130px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .app-thumb-ai    { background: linear-gradient(135deg, #001f30, #003d5c); }
+    .app-thumb-prod  { background: linear-gradient(135deg, #001a28, #003348); }
+    .app-thumb-web   { background: linear-gradient(135deg, #00141e, #002a38); }
+    .app-thumb-other { background: linear-gradient(135deg, #081410, #0f2a1c); }
+
+    /* Corner brackets on thumb */
+    .app-thumb::before, .app-thumb::after {
+      content: '';
+      position: absolute;
+      width: 16px; height: 16px;
+      border-color: rgba(0,196,160,0.3);
+      border-style: solid;
+    }
+    .app-thumb::before { top: 10px; left: 10px; border-width: 1px 0 0 1px; }
+    .app-thumb::after  { bottom: 10px; right: 10px; border-width: 0 1px 1px 0; }
+
+    .app-thumb-badge {
+      position: absolute;
+      top: 8px; right: 8px;
+      font-family: var(--mono);
+      font-size: 0.55rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 2px;
+      background: rgba(0,0,0,0.6);
+      border: 1px solid rgba(0,196,160,0.2);
+      color: var(--c1);
+    }
+    .app-info { padding: 18px 20px 22px; flex: 1; }
+    .app-category {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .cat-ai    { color: var(--c1); }
+    .cat-prod  { color: var(--c4); }
+    .cat-web   { color: var(--c3); }
+    .cat-other { color: var(--c5); }
+    .app-name  { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .app-desc  { color: var(--muted); font-size: 0.82rem; line-height: 1.65; margin-bottom: 16px; }
+    .app-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 5px 12px;
+      border-radius: 3px;
+      transition: all 0.2s;
+    }
+    .app-link:hover { border-color: var(--c1); color: var(--c1); }
+
+    /* ── CONTACT / CTA ────────────────────────────────────────── */
+    #contact { background: var(--dark); text-align: center; }
+    .contact-glow {
+      position: absolute;
+      width: 700px; height: 400px;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(ellipse, rgba(0,196,160,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .contact-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 120px 24px;
+      position: relative;
+      z-index: 1;
+    }
+    .contact-inner h2 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #fff, var(--c3));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.02em;
+    }
+    .contact-inner p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin-bottom: 44px;
+      line-height: 1.8;
+    }
+    .contact-links { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+
+    /* ── FOOTER ───────────────────────────────────────────────── */
+    footer {
+      background: var(--dark2);
+      border-top: 1px solid rgba(0,196,160,0.1);
+      padding: 36px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .footer-logo {
+      font-family: var(--mono);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      background: linear-gradient(90deg, var(--c1), var(--c4));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .footer-copy { font-family: var(--mono); color: var(--muted); font-size: 0.72rem; letter-spacing: 0.04em; }
+    .footer-links { display: flex; gap: 24px; list-style: none; }
+    .footer-links a {
+      font-family: var(--mono);
+      color: var(--muted);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--c4); }
+
+    /* ── RESPONSIVE ───────────────────────────────────────────── */
+    @media (max-width: 760px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      .services-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ─────────────────────────────────────────────────── -->
+  <nav>
+    <span class="nav-logo">SPEKT</span>
+    <ul class="nav-links">
+      <li><a href="#services">Tjänster</a></li>
+      <li><a href="#scanning">3D-scanning</a></li>
+      <li><a href="#portfolio">Appar</a></li>
+      <li><a href="#contact">Kontakt</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Kontakta oss</a>
+  </nav>
+
+  <!-- ── HERO ─────────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-glow glow-teal"></div>
+    <div class="hero-glow glow-blue"></div>
+    <div class="hero-glow glow-cyan"></div>
+
+    <p class="hero-eyebrow">&gt;_ spekt.init()<span class="cursor"></span></p>
+    <h1>Framtid<br>byggs idag</h1>
+    <p class="hero-sub">
+      Vi driver <strong>försäljning och marknadsföring</strong> genom skräddarsydda mjukvarulösningar — och coachar och tränar ditt team att använda dem fullt ut.
+    </p>
+    <div class="hero-buttons">
+      <a href="#services" class="btn-primary">Utforska tjänster</a>
+      <a href="#contact" class="btn-ghost">Kom igång</a>
+    </div>
+
+    <div class="scroll-hint">
+      <span>Scrolla</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ── SERVICES ──────────────────────────────────────────────── -->
+  <section id="services">
+    <div class="section-inner">
+      <p class="section-label">Vad vi gör</p>
+      <h2 class="section-title">Tjänster för<br>framtiden</h2>
+      <p class="section-desc">Från strategi till leverans — SPEKT täcker varje dimension av modern affärsutveckling.</p>
+
+      <div class="services-grid">
+
+        <div class="service-card sc-sales">
+          <span class="service-tag">Core</span>
+          <h3 class="service-title">Konsultation</h3>
+          <p class="service-desc">Från att skärpa din säljmotor till att låsa upp AI-möjligheter — vi kombinerar affärsstrategi och banbrytande teknik för att hjälpa dig konvertera snabbare och växa smartare.</p>
+          <a href="#contact" class="service-link sl-teal">Jobba med oss →</a>
+        </div>
+
+        <div class="service-card sc-ai">
+          <span class="service-tag">Digital</span>
+          <h3 class="service-title">Webbutveckling</h3>
+          <p class="service-desc">Högpresterande webbplatser, landningssidor och skräddarsydda webbappar — byggda för att se bra ut, ladda snabbt och omvandla besökare till kunder.</p>
+          <a href="#portfolio" class="service-link sl-sky">Se vårt arbete →</a>
+        </div>
+
+        <div class="service-card sc-coach">
+          <span class="service-tag">Growth</span>
+          <h3 class="service-title">Coaching & Träning</h3>
+          <p class="service-desc">Individuella och gruppbaserade sessioner anpassade för entreprenörer, chefer och högpresterande individer som vill ha klarhet, ansvar och bestående resultat.</p>
+          <a href="#contact" class="service-link sl-mint">Boka en session →</a>
+        </div>
+
+        <div class="service-card sc-3d">
+          <span class="service-tag">Matterport</span>
+          <h3 class="service-title">3D-scanning</h3>
+          <p class="service-desc">Drivs av Matterport — vi digitaliserar verkliga miljöer i imponerande 3D. Perfekt för fastigheter, arkitektur, butiker och alla rum du vill visa upp digitalt.</p>
+          <a href="https://my.matterport.com" target="_blank" class="service-link sl-blue">Utforska rum →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 3D SCANNING FEATURE ────────────────────────────────────── -->
+  <section id="scanning">
+    <div class="scanning-inner">
+      <div class="scanning-visual">
+        <div class="scanning-grid-lines"></div>
+        <div class="scan-pulse"></div>
+        <div class="scan-pulse"></div>
+        <div class="scan-pulse"></div>
+        <div class="scanning-visual-inner">
+          <div class="scan-label">Matterport 3D-vy</div>
+        </div>
+      </div>
+
+      <div>
+        <p class="section-label">Matterport-partner</p>
+        <h2 class="section-title">Kliv in i<br>vilket rum som helst</h2>
+        <p class="section-desc">
+          SPEKT levererar professionella Matterport 3D-skanningar som låter vem som helst utforska en miljö varifrån i världen. Fastigheter, showrooms, kontor, event — om det finns i verkligheten kan vi ta det online.
+        </p>
+        <div class="stat-row">
+          <div class="stat-item">
+            <div class="stat-number">360°</div>
+            <div class="stat-label">Full täckning</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">4K</div>
+            <div class="stat-label">Upplösning</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">∞</div>
+            <div class="stat-label">Online-åtkomst</div>
+          </div>
+        </div>
+        <a href="https://my.matterport.com" target="_blank" class="scan-cta">
+          Utforska rum →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── APPS / PORTFOLIO ───────────────────────────────────────── -->
+  <section id="portfolio">
+    <div class="section-inner">
+      <p class="section-label">Byggt av SPEKT</p>
+      <h2 class="section-title">Appar & Projekt</h2>
+      <p class="section-desc">Ett växande ekosystem av verktyg, appar och webbplatser — byggda för att lösa verkliga problem och tänja på gränser.</p>
+
+      <div class="portfolio-tabs">
+        <button class="tab-btn active" onclick="filterApps('all', event)">Alla</button>
+        <button class="tab-btn" onclick="filterApps('ai', event)">AI-appar</button>
+        <button class="tab-btn" onclick="filterApps('productivity', event)">Produktivitet</button>
+        <button class="tab-btn" onclick="filterApps('web', event)">Webbplatser</button>
+        <button class="tab-btn" onclick="filterApps('other', event)">Övriga appar</button>
+      </div>
+
+      <div class="apps-grid">
+
+        <!-- AI APPAR -->
+        <div class="app-card visible" data-cat="ai">
+          <div class="app-thumb app-thumb-ai">
+            <span class="app-thumb-badge">AI</span>
+          </div>
+          <div class="app-info">
+            <p class="app-category cat-ai">AI-app</p>
+            <h4 class="app-name">AI-app 1</h4>
+            <p class="app-desc">Platshållare — beskriv din AI-drivna app här.</p>
+            <a href="#" class="app-link">Kommer snart ↗</a>
+          </div>
+        </div>
+
+        <div class="app-card visible" data-cat="ai">
+          <div class="app-thumb app-thumb-ai">
+            <span class="app-thumb-badge">AI</span>
+          </div>
+          <div class="app-info">
+            <p class="app-category cat-ai">AI-app</p>
+            <h4 class="app-name">AI-app 2</h4>
+            <p class="app-desc">Platshållare — beskriv din AI-drivna app här.</p>
+            <a href="#" class="app-link">Kommer snart ↗</a>
+          </div>
+        </div>
+
+        <!-- PRODUKTIVITET -->
+        <div class="app-card visible" data-cat="productivity">
+          <div class="app-thumb app-thumb-prod">
+            <span class="app-thumb-badge">Produktivitet</span>
+          </div>
+          <div class="app-info">
+            <p class="app-category cat-prod">Produktivitet</p>
+            <h4 class="app-name">Produktivitetsapp 1</h4>
+            <p class="app-desc">Platshållare — beskriv ditt produktivitetsverktyg här.</p>
+            <a href="#" class="app-link">Kommer snart ↗</a>
+          </div>
+        </div>
+
+        <div class="app-card visible" data-cat="productivity">
+          <div class="app-thumb app-thumb-prod">
+            <span class="app-thumb-badge">Produktivitet</span>
+          </div>
+          <div class="app-info">
+            <p class="app-category cat-prod">Produktivitet</p>
+            <h4 class="app-name">Produktivitetsapp 2</h4>
+            <p class="app-desc">Platshållare — beskriv ditt produktivitetsverktyg här.</p>
+            <a href="#" class="app-link">Kommer snart ↗</a>
+          </div>
+        </div>
+
+        <!-- ÖVRIGA APPAR -->
+        <div class="app-card visible" data-cat="other">
+          <div class="app-thumb app-thumb-other"><span class="app-thumb-badge">App</span></div>
+          <div class="app-info">
+            <p class="app-category cat-other">App</p>
+            <h4 class="app-name">App 1</h4>
+            <p class="app-desc">Platshållare — beskriv din app här.</p>
+            <a href="#" class="app-link">Kommer snart ↗</a>
+          </div>
+        </div>
+
+        <div class="app-card visible" data-cat="other">
+          <div class="app-thumb app-thumb-other"><span class="app-thumb-badge">App</span></div>
+          <div class="app-info">
+            <p class="app-category cat-other">App</p>
+            <h4 class="app-name">App 2</h4>
+            <p class="app-desc">Platshållare — beskriv din app här.</p>
+            <a href="#" class="app-link">Kommer snart ↗</a>
+          </div>
+        </div>
+
+        <div class="app-card visible" data-cat="other">
+          <div class="app-thumb app-thumb-other"><span class="app-thumb-badge">App</span></div>
+          <div class="app-info">
+            <p class="app-category cat-other">App</p>
+            <h4 class="app-name">App 3</h4>
+            <p class="app-desc">Platshållare — beskriv din app här.</p>
+            <a href="#" class="app-link">Kommer snart ↗</a>
+          </div>
+        </div>
+
+        <div class="app-card visible" data-cat="other">
+          <div class="app-thumb app-thumb-other"><span class="app-thumb-badge">App</span></div>
+          <div class="app-info">
+            <p class="app-category cat-other">App</p>
+            <h4 class="app-name">App 4</h4>
+            <p class="app-desc">Platshållare — beskriv din app här.</p>
+            <a href="#" class="app-link">Kommer snart ↗</a>
+          </div>
+        </div>
+
+        <div class="app-card visible" data-cat="other">
+          <div class="app-thumb app-thumb-other"><span class="app-thumb-badge">App</span></div>
+          <div class="app-info">
+            <p class="app-category cat-other">App</p>
+            <h4 class="app-name">App 5</h4>
+            <p class="app-desc">Platshållare — beskriv din app här.</p>
+            <a href="#" class="app-link">Kommer snart ↗</a>
+          </div>
+        </div>
+
+        <div class="app-card visible" data-cat="other">
+          <div class="app-thumb app-thumb-other"><span class="app-thumb-badge">App</span></div>
+          <div class="app-info">
+            <p class="app-category cat-other">App</p>
+            <h4 class="app-name">App 6</h4>
+            <p class="app-desc">Platshållare — beskriv din app här.</p>
+            <a href="#" class="app-link">Kommer snart ↗</a>
+          </div>
+        </div>
+
+        <div class="app-card visible" data-cat="other">
+          <div class="app-thumb app-thumb-other"><span class="app-thumb-badge">App</span></div>
+          <div class="app-info">
+            <p class="app-category cat-other">App</p>
+            <h4 class="app-name">App 7</h4>
+            <p class="app-desc">Platshållare — beskriv din app här.</p>
+            <a href="#" class="app-link">Kommer snart ↗</a>
+          </div>
+        </div>
+
+        <div class="app-card visible" data-cat="other">
+          <div class="app-thumb app-thumb-other"><span class="app-thumb-badge">App</span></div>
+          <div class="app-info">
+            <p class="app-category cat-other">App</p>
+            <h4 class="app-name">App 8</h4>
+            <p class="app-desc">Platshållare — beskriv din app här.</p>
+            <a href="#" class="app-link">Kommer snart ↗</a>
+          </div>
+        </div>
+
+        <div class="app-card visible" data-cat="other">
+          <div class="app-thumb app-thumb-other"><span class="app-thumb-badge">App</span></div>
+          <div class="app-info">
+            <p class="app-category cat-other">App</p>
+            <h4 class="app-name">App 9</h4>
+            <p class="app-desc">Platshållare — beskriv din app här.</p>
+            <a href="#" class="app-link">Kommer snart ↗</a>
+          </div>
+        </div>
+
+        <div class="app-card visible" data-cat="other">
+          <div class="app-thumb app-thumb-other"><span class="app-thumb-badge">App</span></div>
+          <div class="app-info">
+            <p class="app-category cat-other">App</p>
+            <h4 class="app-name">App 10</h4>
+            <p class="app-desc">Platshållare — beskriv din app här.</p>
+            <a href="#" class="app-link">Kommer snart ↗</a>
+          </div>
+        </div>
+
+        <!-- WEBBPLATSER -->
+        <div class="app-card visible" data-cat="web">
+          <div class="app-thumb app-thumb-web"><span class="app-thumb-badge">Webbplats</span></div>
+          <div class="app-info">
+            <p class="app-category cat-web">Webbplats</p>
+            <h4 class="app-name">Webbplats 1</h4>
+            <p class="app-desc">Platshållare — lägg till en webbplats du byggt här.</p>
+            <a href="#" class="app-link">Kommer snart ↗</a>
+          </div>
+        </div>
+
+        <div class="app-card visible" data-cat="web">
+          <div class="app-thumb app-thumb-web"><span class="app-thumb-badge">Webbplats</span></div>
+          <div class="app-info">
+            <p class="app-category cat-web">Webbplats</p>
+            <h4 class="app-name">Webbplats 2</h4>
+            <p class="app-desc">Platshållare — lägg till en webbplats du byggt här.</p>
+            <a href="#" class="app-link">Kommer snart ↗</a>
+          </div>
+        </div>
+
+        <div class="app-card visible" data-cat="web">
+          <div class="app-thumb app-thumb-web"><span class="app-thumb-badge">Webbplats</span></div>
+          <div class="app-info">
+            <p class="app-category cat-web">Webbplats</p>
+            <h4 class="app-name">Webbplats 3</h4>
+            <p class="app-desc">Platshållare — lägg till en webbplats du byggt här.</p>
+            <a href="#" class="app-link">Kommer snart ↗</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ───────────────────────────────────────────────── -->
+  <section id="contact">
+    <div class="contact-glow"></div>
+    <div class="contact-inner">
+      <p class="section-label" style="text-align:center; display:block;">Låt oss jobba tillsammans</p>
+      <h2>Redo att ta<br>nästa steg?</h2>
+      <p>Oavsett om du behöver en säljstrategi, en AI-lösning, en 3D-skanning eller en coach — SPEKT är din partner. Låt oss starta en konversation.</p>
+      <div class="contact-links">
+        <a href="mailto:hello@spekt.se" class="btn-primary">hello@spekt.se</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ─────────────────────────────────────────────────── -->
+  <footer>
+    <span class="footer-logo">SPEKT</span>
+    <span class="footer-copy">© 2026 SPEKT. Alla rättigheter förbehållna.</span>
+    <ul class="footer-links">
+      <li><a href="#services">Tjänster</a></li>
+      <li><a href="#portfolio">Appar</a></li>
+      <li><a href="#contact">Kontakt</a></li>
+    </ul>
+  </footer>
+
+  <!-- ── JS ─────────────────────────────────────────────────────── -->
+  <script>
+    function filterApps(cat, e) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      e.currentTarget.classList.add('active');
+      document.querySelectorAll('.app-card').forEach(card => {
+        card.classList.toggle('visible', cat === 'all' || card.dataset.cat === cat);
+      });
+    }
+  </script>
+
+</body>
+</html>
