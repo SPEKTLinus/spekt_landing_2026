@@ -1,0 +1,5 @@
+# Statisk landningssida (index.html i repo-roten). Åsidosätter Netlify UI om
+# den är satt till t.ex. "bun run build" och publish "dist".
+[build]
+  command = "true"
+  publish = "."
