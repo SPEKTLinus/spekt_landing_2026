@@ -300,6 +300,7 @@
       position: relative;
       overflow: hidden;
       transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+      scroll-margin-top: 96px;
     }
     /* Top accent line */
     .service-card::after {
@@ -660,10 +661,10 @@
   <nav>
     <span class="nav-logo">SPEKT</span>
     <ul class="nav-links">
-      <li><a href="#services">Tjänster</a></li>
-      <li><a href="#portfolio">Appar</a></li>
-      <li><a href="#scanning">3D-scanning</a></li>
-      <li><a href="#contact">Kontakt</a></li>
+      <li><a href="#konsultation">Konsultation</a></li>
+      <li><a href="#webbutveckling">Webbutveckling</a></li>
+      <li><a href="#coaching">Coaching</a></li>
+      <li><a href="#service-3d">3D-scanning</a></li>
     </ul>
     <a href="#contact" class="nav-cta">Kontakta oss</a>
   </nav>
@@ -700,28 +701,28 @@
 
       <div class="services-grid">
 
-        <div class="service-card sc-sales">
+        <div class="service-card sc-sales" id="konsultation">
           <span class="service-tag">Core</span>
           <h3 class="service-title">Konsultation</h3>
           <p class="service-desc">Från att skärpa din säljmotor till att låsa upp AI-möjligheter — vi kombinerar affärsstrategi och banbrytande teknik för att hjälpa dig konvertera snabbare och växa smartare.</p>
           <a href="#contact" class="service-link sl-teal">Jobba med oss →</a>
         </div>
 
-        <div class="service-card sc-ai">
+        <div class="service-card sc-ai" id="webbutveckling">
           <span class="service-tag">Digital</span>
           <h3 class="service-title">Webbutveckling</h3>
           <p class="service-desc">Högpresterande webbplatser, landningssidor och skräddarsydda webbappar — byggda för att se bra ut, ladda snabbt och omvandla besökare till kunder.</p>
           <a href="#portfolio" class="service-link sl-sky">Se vårt arbete →</a>
         </div>
 
-        <div class="service-card sc-coach">
+        <div class="service-card sc-coach" id="coaching">
           <span class="service-tag">Growth</span>
           <h3 class="service-title">Coaching & Träning</h3>
           <p class="service-desc">Individuella och gruppbaserade sessioner anpassade för entreprenörer, chefer och högpresterande individer som vill ha klarhet, ansvar och bestående resultat.</p>
           <a href="#contact" class="service-link sl-mint">Boka en session →</a>
         </div>
 
-        <div class="service-card sc-3d">
+        <div class="service-card sc-3d" id="service-3d">
           <span class="service-tag">Matterport</span>
           <h3 class="service-title">3D-scanning</h3>
           <p class="service-desc">Drivs av Matterport — vi digitaliserar verkliga miljöer i imponerande 3D. Perfekt för fastigheter, arkitektur, butiker och alla rum du vill visa upp digitalt.</p>
@@ -993,9 +994,11 @@
     <span class="footer-logo">SPEKT</span>
     <span class="footer-copy">© 2026 SPEKT. Alla rättigheter förbehållna.</span>
     <ul class="footer-links">
-      <li><a href="#services">Tjänster</a></li>
+      <li><a href="#konsultation">Konsultation</a></li>
+      <li><a href="#webbutveckling">Webbutveckling</a></li>
+      <li><a href="#coaching">Coaching</a></li>
+      <li><a href="#service-3d">3D-scanning</a></li>
       <li><a href="#portfolio">Appar</a></li>
-      <li><a href="#scanning">3D-scanning</a></li>
       <li><a href="#contact">Kontakt</a></li>
     </ul>
   </footer>
