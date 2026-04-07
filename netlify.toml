@@ -1,5 +1,5 @@
-# Statisk landningssida (index.html i repo-roten). Åsidosätter Netlify UI om
-# den är satt till t.ex. "bun run build" och publish "dist".
+# Statisk landningssida. Kopierar index.html till dist/ så Netlify alltid har en
+# existerande publish-mapp (undviker "Deploy directory 'dist' does not exist").
 [build]
-  command = "true"
-  publish = "."
+  command = "mkdir -p dist && cp index.html dist/index.html"
+  publish = "dist"
