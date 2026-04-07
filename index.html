@@ -117,6 +117,46 @@
     }
     .nav-cta:hover { background: var(--c1); color: var(--dark); }
 
+    .nav-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      margin: 0;
+      padding: 0;
+      border: 1px solid rgba(0,196,160,0.35);
+      border-radius: 4px;
+      background: rgba(0,196,160,0.08);
+      color: var(--c1);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .nav-toggle:focus-visible {
+      outline: 2px solid var(--c4);
+      outline-offset: 2px;
+    }
+    .nav-toggle-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      width: 18px;
+    }
+    .nav-toggle-lines span {
+      display: block;
+      height: 2px;
+      background: currentColor;
+      border-radius: 1px;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+    nav.is-open .nav-toggle-lines span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    nav.is-open .nav-toggle-lines span:nth-child(2) { opacity: 0; }
+    nav.is-open .nav-toggle-lines span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
     /* ── HERO ─────────────────────────────────────────────────── */
     .hero {
       min-height: 100vh;
@@ -647,9 +687,33 @@
     .footer-links a:hover { color: var(--c4); }
 
     /* ── RESPONSIVE ───────────────────────────────────────────── */
+    @media (max-width: 1100px) {
+      .nav-links { gap: 18px; font-size: 0.68rem; }
+    }
     @media (max-width: 760px) {
-      nav { padding: 16px 20px; }
-      .nav-links { display: none; }
+      nav {
+        padding: 16px 20px;
+        flex-wrap: wrap;
+        position: relative;
+      }
+      .nav-toggle { display: flex; }
+      .nav-links {
+        display: none;
+        order: 4;
+        width: 100%;
+        flex-direction: column;
+        gap: 0;
+        padding: 8px 0 16px;
+        border-top: 1px solid rgba(0,196,160,0.12);
+        margin-top: 12px;
+      }
+      .nav-links li { width: 100%; }
+      .nav-links a {
+        display: block;
+        padding: 14px 4px;
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+      }
+      nav.is-open .nav-links { display: flex; }
       .services-grid { grid-template-columns: 1fr; }
       footer { flex-direction: column; text-align: center; }
     }
@@ -658,14 +722,19 @@
 <body>
 
   <!-- ── NAV ─────────────────────────────────────────────────── -->
-  <nav>
+  <nav id="site-nav">
     <span class="nav-logo">SPEKT</span>
-    <ul class="nav-links">
+    <ul class="nav-links" id="nav-menu">
       <li><a href="#konsultation">Konsultation</a></li>
       <li><a href="#webbutveckling">Webbutveckling</a></li>
       <li><a href="#coaching">Coaching</a></li>
       <li><a href="#service-3d">3D-scanning</a></li>
     </ul>
+    <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Öppna eller stäng meny">
+      <span class="nav-toggle-lines" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </span>
+    </button>
     <a href="#contact" class="nav-cta">Kontakta oss</a>
   </nav>
 
@@ -1005,6 +1074,40 @@
 
   <!-- ── JS ─────────────────────────────────────────────────────── -->
   <script>
+    /* Vid besök: alltid landa på hero — inte på #portfolio eller sparad scroll. */
+    (function () {
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+      var pathSearch = location.pathname + location.search;
+      function landOnHero() {
+        var h = window.location.hash;
+        if (h === '#portfolio') {
+          history.replaceState(null, '', pathSearch);
+          window.scrollTo(0, 0);
+          return;
+        }
+        if (!h) {
+          window.scrollTo(0, 0);
+        }
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', landOnHero);
+      } else {
+        landOnHero();
+      }
+      window.addEventListener('load', landOnHero);
+      window.addEventListener('pageshow', function (ev) {
+        if (!ev.persisted) return;
+        if (!window.location.hash || window.location.hash === '#portfolio') {
+          if (window.location.hash === '#portfolio') {
+            history.replaceState(null, '', pathSearch);
+          }
+          window.scrollTo(0, 0);
+        }
+      });
+    })();
+
     function filterApps(cat, e) {
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
       e.currentTarget.classList.add('active');
@@ -1012,6 +1115,31 @@
         card.classList.toggle('visible', cat === 'all' || card.dataset.cat === cat);
       });
     }
+
+    (function () {
+      var nav = document.getElementById('site-nav');
+      var toggle = document.getElementById('nav-toggle');
+      var menu = document.getElementById('nav-menu');
+      if (!nav || !toggle || !menu) return;
+
+      function setOpen(open) {
+        nav.classList.toggle('is-open', open);
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        toggle.setAttribute('aria-label', open ? 'Stäng meny' : 'Öppna meny');
+      }
+
+      toggle.addEventListener('click', function () {
+        setOpen(!nav.classList.contains('is-open'));
+      });
+
+      menu.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', function () { setOpen(false); });
+      });
+
+      window.addEventListener('resize', function () {
+        if (window.matchMedia('(min-width: 761px)').matches) setOpen(false);
+      });
+    })();
   </script>
 
 </body>
