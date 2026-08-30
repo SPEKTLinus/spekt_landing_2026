@@ -321,6 +321,10 @@
       e.style.transitionDelay = Math.min(i % 4 * 90, 270) + "ms";
       io.observe(e);
     });
+    // om sidan laddas i bakgrunden triggar aldrig observern — visa allt ändå
+    setTimeout(function () {
+      alla.forEach(function (e) { e.classList.add("syns"); });
+    }, 2200);
   })();
 </script>
 
