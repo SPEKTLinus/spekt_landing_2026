@@ -139,12 +139,12 @@
     .ben p { margin: 0; color: var(--dov); font-size: 0.95rem; }
 
     .produkter { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
-    .produkter a.kort {
+    .produkter .kort {
       display: flex; flex-direction: column; gap: 10px;
       background: var(--yta); border: 1px solid var(--linje); border-radius: 10px;
       padding: 26px; text-decoration: none;
-      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
     }
+    .produkter a.kort { transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease; }
     .produkter a.kort:hover { transform: translateY(-3px); border-color: var(--accent-djup); background: var(--yta-ljus); }
     .produkter .namn { font-weight: 800; font-size: 1.12rem; display: flex; justify-content: space-between; align-items: baseline; }
     .produkter .namn::after { content: "↗"; color: var(--accent); font-size: 0.9rem; }
