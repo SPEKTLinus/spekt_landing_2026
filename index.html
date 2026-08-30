@@ -10,7 +10,7 @@
   <meta property="og:url" content="https://spekt.se/">
   <meta property="og:type" content="website">
   <link rel="canonical" href="https://spekt.se/">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%230E1116'/%3E%3Ctext x='50' y='68' font-family='Helvetica,Arial,sans-serif' font-size='52' font-weight='700' fill='%23F0A63C' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
+  <link rel="icon" href="/logga.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&family=Martian+Mono:wght@400;600&display=swap">
   <style>
@@ -51,7 +51,9 @@
       border-bottom: 1px solid var(--linje);
     }
     .topp .yta { display: flex; align-items: center; justify-content: space-between; height: 60px; }
-    .marke { font-weight: 800; letter-spacing: 0.06em; font-size: 1.02rem; text-decoration: none; }
+    .marke { font-weight: 800; letter-spacing: 0.06em; font-size: 1.02rem; text-decoration: none;
+             display: flex; align-items: center; gap: 10px; }
+    .marke img { height: 24px; width: 24px; }
     .marke b { color: var(--accent); }
     nav.lankar { display: flex; gap: 26px; font-size: 0.88rem; }
     nav.lankar a { color: var(--dov); text-decoration: none; }
@@ -200,7 +202,7 @@
 
 <header class="topp">
   <div class="yta">
-    <a class="marke" href="#">SPEKT<b>.</b></a>
+    <a class="marke" href="#"><img src="/logga.svg" alt="">SPEKT<b>.</b></a>
     <nav class="lankar">
       <a href="#vad">Vad jag gör</a>
       <a href="#byggt">Byggt av SPEKT</a>
