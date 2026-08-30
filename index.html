@@ -1,1156 +1,328 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="sv">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="SPEKT — konsulting, webbutveckling, AI, coaching och Matterport 3D-scanning. Vi bygger mjukvara och hjälper team att växa." />
-  <title>SPEKT — Konsulting · AI · Coaching · 3D-scanning</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SPEKT — Sälj. Bygg. Visa.</title>
+  <meta name="description" content="Säljkonsulting, AI-byggd produktutveckling och 3D-visualisering från Malmö. Byggt av den som säljer det.">
+  <meta property="og:title" content="SPEKT — Jag bygger det som säljer">
+  <meta property="og:description" content="Säljkonsulting, AI-byggd produktutveckling och 3D-visualisering. Inte råd — färdiga verktyg.">
+  <meta property="og:url" content="https://spekt.se/">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://spekt.se/">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%230E1116'/%3E%3Ctext x='50' y='68' font-family='Helvetica,Arial,sans-serif' font-size='52' font-weight='700' fill='%23F0A63C' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&family=Martian+Mono:wght@400;600&display=swap">
   <style>
-    /* ── Reset & Base ─────────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --c1: #00c4a0;
-      --c2: #0891b2;
-      --c3: #38bdf8;
-      --c4: #67e8f9;
-      --c5: #2dd4bf;
-      --dark:  #050d10;
-      --dark2: #081318;
-      --dark3: #0c1d24;
-      --text:  #dff0f5;
-      --muted: #4d7f94;
-      --mono: 'JetBrains Mono', monospace;
-      --sans: 'Inter', system-ui, sans-serif;
-      --radius: 12px;
+      --grund: #0E1116;
+      --yta: #151B23;
+      --yta-ljus: #1C242F;
+      --linje: #232C38;
+      --text: #EDECE4;
+      --dov: #97A1AC;
+      --accent: #F0A63C;
+      --accent-djup: #C9821E;
     }
+    * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
-      background: var(--dark);
-      color: var(--text);
-      font-family: var(--sans);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-    a { color: inherit; text-decoration: none; }
-
-    /* ── Dot-grid background ──────────────────────────────────── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: radial-gradient(circle, rgba(0,196,160,0.12) 1px, transparent 1px);
-      background-size: 32px 32px;
-      pointer-events: none;
-      z-index: 0;
-    }
-    /* Scanline overlay */
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 2px,
-        rgba(0,0,0,0.04) 2px,
-        rgba(0,0,0,0.04) 4px
-      );
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* ── NAV ──────────────────────────────────────────────────── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 18px 48px;
-      background: rgba(5,13,16,0.85);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(0,196,160,0.1);
-    }
-    .nav-logo {
-      font-family: var(--mono);
-      font-size: 1.2rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      background: linear-gradient(90deg, var(--c1), var(--c4));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .nav-logo::before {
-      content: '> ';
-      color: var(--c1);
-      -webkit-text-fill-color: var(--c1);
-    }
-    .nav-links {
-      display: flex;
-      gap: 36px;
-      list-style: none;
-      font-family: var(--mono);
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-    .nav-links a { color: var(--muted); transition: color 0.2s; }
-    .nav-links a:hover { color: var(--c4); }
-    .nav-cta {
-      font-family: var(--mono);
-      padding: 9px 22px;
-      border-radius: 4px;
-      background: transparent;
-      border: 1px solid var(--c1);
-      color: var(--c1);
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      transition: background 0.2s, color 0.2s;
-    }
-    .nav-cta:hover { background: var(--c1); color: var(--dark); }
-
-    .nav-toggle {
-      display: none;
-      align-items: center;
-      justify-content: center;
-      width: 44px;
-      height: 44px;
       margin: 0;
-      padding: 0;
-      border: 1px solid rgba(0,196,160,0.35);
-      border-radius: 4px;
-      background: rgba(0,196,160,0.08);
-      color: var(--c1);
-      cursor: pointer;
-      flex-shrink: 0;
+      background: var(--grund);
+      color: var(--text);
+      font-family: "Schibsted Grotesk", "Helvetica Neue", system-ui, sans-serif;
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
-    .nav-toggle:focus-visible {
-      outline: 2px solid var(--c4);
-      outline-offset: 2px;
+    .mono {
+      font-family: "Martian Mono", ui-monospace, Menlo, monospace;
+      font-variant-numeric: tabular-nums;
     }
-    .nav-toggle-lines {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-      width: 18px;
-    }
-    .nav-toggle-lines span {
-      display: block;
-      height: 2px;
-      background: currentColor;
-      border-radius: 1px;
-      transition: transform 0.2s, opacity 0.2s;
-    }
-    nav.is-open .nav-toggle-lines span:nth-child(1) {
-      transform: translateY(7px) rotate(45deg);
-    }
-    nav.is-open .nav-toggle-lines span:nth-child(2) { opacity: 0; }
-    nav.is-open .nav-toggle-lines span:nth-child(3) {
-      transform: translateY(-7px) rotate(-45deg);
-    }
+    .yta { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+    a { color: inherit; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
 
-    /* ── HERO ─────────────────────────────────────────────────── */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 180px 24px 120px;
-      position: relative;
-      overflow: hidden;
+    /* ------- nav ------- */
+    header.topp {
+      position: sticky; top: 0; z-index: 10;
+      background: color-mix(in srgb, var(--grund) 88%, transparent);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--linje);
     }
-    /* Hero grid overlay */
-    .hero-grid {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(0,196,160,0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,196,160,0.05) 1px, transparent 1px);
-      background-size: 80px 80px;
-      pointer-events: none;
-    }
-    .hero-glow {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(120px);
-      pointer-events: none;
-    }
-    .glow-teal { width: 600px; height: 600px; background: rgba(0,196,160,0.13); top: -80px; left: -80px; }
-    .glow-blue { width: 500px; height: 500px; background: rgba(8,145,178,0.16); top: 60px; right: -80px; }
-    .glow-cyan { width: 400px; height: 400px; background: rgba(103,232,249,0.08); bottom: 0; left: 40%; }
+    .topp .yta { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+    .marke { font-weight: 800; letter-spacing: 0.06em; font-size: 1.02rem; text-decoration: none; }
+    .marke b { color: var(--accent); }
+    nav.lankar { display: flex; gap: 26px; font-size: 0.88rem; }
+    nav.lankar a { color: var(--dov); text-decoration: none; }
+    nav.lankar a:hover { color: var(--text); }
+    @media (max-width: 620px) { nav.lankar { display: none; } }
 
-    .hero-eyebrow {
-      font-family: var(--mono);
-      font-size: 0.8rem;
-      letter-spacing: 0.12em;
-      color: var(--c1);
-      margin-bottom: 24px;
-      font-weight: 500;
-      position: relative;
-      z-index: 1;
+    /* ------- hero ------- */
+    .hero { padding: 108px 0 76px; }
+    .oga {
+      font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--dov); margin-bottom: 26px;
     }
-    .hero-eyebrow .cursor {
-      display: inline-block;
-      width: 8px; height: 1em;
-      background: var(--c1);
-      margin-left: 4px;
-      vertical-align: text-bottom;
-      animation: blink 1.1s step-end infinite;
+    h1 {
+      font-size: clamp(2.7rem, 7.5vw, 5.2rem);
+      font-weight: 850; font-stretch: 105%;
+      line-height: 1.02; letter-spacing: -0.022em;
+      margin: 0 0 26px; max-width: 13ch; text-wrap: balance;
     }
-    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+    h1 em { font-style: normal; color: var(--accent); }
+    .ingress { font-size: 1.22rem; color: var(--dov); max-width: 52ch; margin: 0 0 40px; }
+    .ingress strong { color: var(--text); font-weight: 600; }
+    .cta-rad { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+    .knapp {
+      display: inline-block; text-decoration: none; font-weight: 700; font-size: 0.98rem;
+      padding: 14px 26px; border-radius: 6px;
+      background: var(--accent); color: #14100A; border: 1px solid var(--accent);
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+    .knapp:hover { background: #F7B95E; transform: translateY(-1px); }
+    .knapp.tunn { background: transparent; color: var(--text); border-color: var(--linje); }
+    .knapp.tunn:hover { border-color: var(--dov); background: var(--yta); }
+    .bevisrad {
+      display: flex; gap: 34px; flex-wrap: wrap;
+      margin-top: 62px; padding-top: 26px; border-top: 1px solid var(--linje);
+      font-size: 0.72rem; color: var(--dov);
+    }
+    .bevisrad span b { display: block; color: var(--text); font-size: 1.05rem; font-weight: 600; margin-bottom: 2px; }
 
-    .hero h1 {
-      font-family: var(--sans);
-      font-size: clamp(2.8rem, 7.5vw, 6.5rem);
-      font-weight: 900;
-      line-height: 1.2;
-      letter-spacing: -0.03em;
-      background: linear-gradient(135deg, #ffffff 25%, var(--c3) 60%, var(--c4) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      padding-bottom: 0.1em;
-      margin-bottom: 28px;
-      position: relative;
-      z-index: 1;
+    /* ------- sektioner ------- */
+    section.block { padding: 84px 0; border-top: 1px solid var(--linje); }
+    .blockoga { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+    h2 {
+      font-size: clamp(1.7rem, 3.6vw, 2.5rem); font-weight: 800; letter-spacing: -0.015em;
+      margin: 0 0 18px; max-width: 24ch; text-wrap: balance;
     }
-    .hero-sub {
-      font-size: clamp(0.95rem, 2vw, 1.2rem);
-      color: var(--muted);
-      max-width: 560px;
-      margin: 0 auto 44px;
-      line-height: 1.8;
-      position: relative;
-      z-index: 1;
-    }
-    .hero-sub strong { color: var(--text); }
-    .hero-buttons {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      justify-content: center;
-      position: relative;
-      z-index: 1;
-    }
-    .btn-primary {
-      font-family: var(--mono);
-      padding: 14px 36px;
-      border-radius: 4px;
-      background: linear-gradient(135deg, var(--c1), var(--c2));
-      color: var(--dark);
-      font-weight: 700;
-      font-size: 0.85rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 0 30px rgba(0,196,160,0.3);
-    }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 50px rgba(0,196,160,0.5); }
-    .btn-ghost {
-      font-family: var(--mono);
-      padding: 14px 36px;
-      border-radius: 4px;
-      border: 1px solid rgba(0,196,160,0.3);
-      color: var(--c4);
-      font-weight: 500;
-      font-size: 0.85rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      transition: border-color 0.2s, background 0.2s;
-    }
-    .btn-ghost:hover { border-color: var(--c4); background: rgba(103,232,249,0.05); }
+    .blockingress { color: var(--dov); max-width: 58ch; margin: 0 0 44px; }
 
-    /* ── SCROLL INDICATOR ─────────────────────────────────────── */
-    .scroll-hint {
-      position: absolute;
-      bottom: 36px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      color: var(--muted);
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      z-index: 1;
+    .ben { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 18px; }
+    .ben article {
+      background: var(--yta); border: 1px solid var(--linje); border-radius: 10px;
+      padding: 28px 26px;
     }
-    .scroll-line {
-      width: 1px; height: 48px;
-      background: linear-gradient(to bottom, var(--c1), transparent);
-      animation: scrollpulse 2s ease-in-out infinite;
-    }
-    @keyframes scrollpulse {
-      0%, 100% { opacity: 0.3; transform: scaleY(1); }
-      50%       { opacity: 1;   transform: scaleY(0.6); }
-    }
+    .ben .ord { font-size: 1.55rem; font-weight: 850; letter-spacing: 0.01em; margin-bottom: 10px; }
+    .ben .ord::after { content: "."; color: var(--accent); }
+    .ben p { margin: 0; color: var(--dov); font-size: 0.95rem; }
 
-    /* ── SECTION COMMONS ──────────────────────────────────────── */
-    section { position: relative; z-index: 1; }
-    .section-inner { max-width: 1200px; margin: 0 auto; padding: 100px 24px; }
-    .section-label {
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--c1);
-      font-weight: 500;
-      margin-bottom: 14px;
+    .produkter { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+    .produkter a.kort {
+      display: flex; flex-direction: column; gap: 10px;
+      background: var(--yta); border: 1px solid var(--linje); border-radius: 10px;
+      padding: 26px; text-decoration: none;
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
     }
-    .section-label::before { content: '// '; opacity: 0.5; }
-    .section-title {
-      font-size: clamp(1.9rem, 4vw, 2.9rem);
-      font-weight: 800;
-      line-height: 1.15;
-      margin-bottom: 16px;
-      letter-spacing: -0.02em;
-    }
-    .section-desc {
-      color: var(--muted);
-      font-size: 1rem;
-      max-width: 560px;
-      margin-bottom: 56px;
-      line-height: 1.8;
-    }
+    .produkter a.kort:hover { transform: translateY(-3px); border-color: var(--accent-djup); background: var(--yta-ljus); }
+    .produkter .namn { font-weight: 800; font-size: 1.12rem; display: flex; justify-content: space-between; align-items: baseline; }
+    .produkter .namn::after { content: "↗"; color: var(--accent); font-size: 0.9rem; }
+    .produkter .kort.stilla .namn::after { content: ""; }
+    .produkter p { margin: 0; color: var(--dov); font-size: 0.92rem; flex: 1; }
+    .produkter .stat { font-size: 0.68rem; color: var(--accent); letter-spacing: 0.04em; }
 
-    /* ── SERVICES ─────────────────────────────────────────────── */
-    #services { background: var(--dark2); }
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
+    .steg { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 28px; counter-reset: s; }
+    .steg div { counter-increment: s; border-top: 2px solid var(--accent); padding-top: 16px; }
+    .steg div::before {
+      content: "0" counter(s);
+      font-family: "Martian Mono", ui-monospace, monospace;
+      font-size: 0.72rem; color: var(--dov); display: block; margin-bottom: 10px;
     }
-    .service-card {
-      background: var(--dark3);
-      border-radius: var(--radius);
-      padding: 36px 30px;
-      border: 1px solid rgba(255,255,255,0.05);
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
-      scroll-margin-top: 96px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      height: 100%;
-      min-height: 0;
-    }
-    /* Top accent line */
-    .service-card::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    .sc-sales::after  { background: linear-gradient(90deg, var(--c1), transparent); }
-    .sc-3d::after     { background: linear-gradient(90deg, var(--c2), transparent); }
-    .sc-ai::after     { background: linear-gradient(90deg, var(--c3), transparent); }
-    .sc-coach::after  { background: linear-gradient(90deg, var(--c5), transparent); }
+    .steg b { display: block; font-size: 1.06rem; font-weight: 800; margin-bottom: 6px; }
+    .steg p { margin: 0; font-size: 0.92rem; color: var(--dov); }
 
-    .service-card:hover { transform: translateY(-5px); }
-    .service-card:hover::after { opacity: 1; }
+    .om { display: grid; grid-template-columns: 84px 1fr; gap: 28px; align-items: start; max-width: 720px; }
+    .monogram {
+      width: 84px; height: 84px; border-radius: 12px; background: var(--yta);
+      border: 1px solid var(--linje); display: grid; place-items: center;
+      font-weight: 850; font-size: 2rem; color: var(--accent);
+    }
+    .om p { margin: 0; color: var(--dov); }
+    .om p strong { color: var(--text); }
+    @media (max-width: 520px) { .om { grid-template-columns: 1fr; } }
 
-    .sc-sales:hover { border-color: rgba(0,196,160,0.35);  box-shadow: 0 20px 50px rgba(0,196,160,0.12); }
-    .sc-3d:hover    { border-color: rgba(8,145,178,0.4);   box-shadow: 0 20px 50px rgba(8,145,178,0.12); }
-    .sc-ai:hover    { border-color: rgba(56,189,248,0.35); box-shadow: 0 20px 50px rgba(56,189,248,0.12); }
-    .sc-coach:hover { border-color: rgba(45,212,191,0.35); box-shadow: 0 20px 50px rgba(45,212,191,0.12); }
+    .kontakt { text-align: left; }
+    .kontakt h2 { max-width: 18ch; }
+    .kontakt .mejl { color: var(--dov); font-size: 0.9rem; margin-top: 22px; }
+    .kontakt .mejl a { color: var(--text); text-decoration: underline; text-decoration-color: var(--accent-djup); text-underline-offset: 4px; }
 
-    .service-tag {
-      position: absolute;
-      top: 18px; right: 18px;
-      font-family: var(--mono);
-      font-size: 0.6rem;
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      padding: 3px 10px;
-      border-radius: 2px;
-      background: rgba(0,196,160,0.08);
-      border: 1px solid rgba(0,196,160,0.15);
-      color: var(--c1);
+    footer.fot {
+      border-top: 1px solid var(--linje); padding: 34px 0 56px;
+      display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap;
+      font-size: 0.8rem; color: var(--dov);
     }
-    .service-title {
-      font-size: 1.2rem;
-      font-weight: 700;
-      margin-bottom: 12px;
-      margin-top: 8px;
-    }
-    .service-desc {
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.75;
-      margin-bottom: 0;
-      flex: 1 1 auto;
-    }
-    .service-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      transition: gap 0.2s;
-      margin-top: auto;
-      padding-top: 24px;
-    }
-    .service-link:hover { gap: 10px; }
-    .sl-teal   { color: var(--c1); }
-    .sl-blue   { color: var(--c2); }
-    .sl-sky    { color: var(--c3); }
-    .sl-cyan   { color: var(--c4); }
-    .sl-mint   { color: var(--c5); }
+    footer.fot nav { display: flex; gap: 18px; flex-wrap: wrap; }
+    footer.fot a { color: var(--dov); text-decoration: none; }
+    footer.fot a:hover { color: var(--text); }
 
-    /* ── 3D SCANNING FEATURE ──────────────────────────────────── */
-    #scanning {
-      background: linear-gradient(135deg, #030e14 0%, #051520 50%, #030c15 100%);
-      border-top: 1px solid rgba(8,145,178,0.15);
-      border-bottom: 1px solid rgba(8,145,178,0.15);
-    }
-    .scanning-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 100px 24px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-    @media (max-width: 800px) { .scanning-inner { grid-template-columns: 1fr; gap: 40px; } }
-    .scanning-visual {
-      position: relative;
-      aspect-ratio: 4/3;
-      border-radius: var(--radius);
-      overflow: hidden;
-      background: linear-gradient(135deg, #041420, #062840);
-      border: 1px solid rgba(8,145,178,0.25);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .scanning-grid-lines {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(8,145,178,0.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(8,145,178,0.1) 1px, transparent 1px);
-      background-size: 40px 40px;
-    }
-    .scan-pulse {
-      position: absolute;
-      border-radius: 50%;
-      border: 1px solid rgba(8,145,178,0.35);
-      animation: pulse 3s ease-in-out infinite;
-    }
-    .scan-pulse:nth-child(2) { width: 160px; height: 160px; }
-    .scan-pulse:nth-child(3) { width: 260px; height: 260px; animation-delay: 0.6s; }
-    .scan-pulse:nth-child(4) { width: 360px; height: 360px; animation-delay: 1.2s; }
-    @keyframes pulse {
-      0%, 100% { opacity: 0.5; transform: scale(1); }
-      50%       { opacity: 0.1; transform: scale(1.04); }
-    }
-    .scanning-visual-inner { text-align: center; position: relative; z-index: 1; }
-    .scan-label {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      color: var(--c2);
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-    .scan-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-family: var(--mono);
-      padding: 14px 34px;
-      border-radius: 4px;
-      background: linear-gradient(135deg, var(--c2), var(--c1));
-      color: var(--dark);
-      font-weight: 700;
-      font-size: 0.82rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-top: 32px;
-      transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 0 30px rgba(8,145,178,0.3);
-    }
-    .scan-cta:hover { transform: translateY(-2px); box-shadow: 0 0 50px rgba(8,145,178,0.5); }
-    .stat-row { display: flex; gap: 44px; margin-top: 44px; }
-    .stat-number {
-      font-family: var(--mono);
-      font-size: 2rem;
-      font-weight: 700;
-      background: linear-gradient(90deg, var(--c2), var(--c4));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1;
-      margin-bottom: 4px;
-    }
-    .stat-label {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      color: var(--muted);
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-
-    /* ── APPS / PORTFOLIO ─────────────────────────────────────── */
-    #portfolio { background: var(--dark); }
-    .portfolio-tabs {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 44px;
-    }
-    .tab-btn {
-      font-family: var(--mono);
-      padding: 8px 20px;
-      border-radius: 4px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: transparent;
-      color: var(--muted);
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .tab-btn:hover, .tab-btn.active {
-      background: var(--c2);
-      border-color: var(--c2);
-      color: var(--dark);
-    }
-    .apps-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 18px;
-    }
-    .app-card {
-      background: var(--dark3);
-      border-radius: var(--radius);
-      border: 1px solid rgba(255,255,255,0.05);
-      overflow: hidden;
-      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
-      cursor: pointer;
-      display: none;
-    }
-    .app-card.visible { display: flex; flex-direction: column; }
-    .app-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-      border-color: rgba(0,196,160,0.2);
-    }
-    .app-thumb {
-      height: 130px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-    .app-thumb-ai    { background: linear-gradient(135deg, #001f30, #003d5c); }
-    .app-thumb-prod  { background: linear-gradient(135deg, #001a28, #003348); }
-    .app-thumb-web   { background: linear-gradient(135deg, #00141e, #002a38); }
-    .app-thumb-other { background: linear-gradient(135deg, #081410, #0f2a1c); }
-
-    /* Corner brackets on thumb */
-    .app-thumb::before, .app-thumb::after {
-      content: '';
-      position: absolute;
-      width: 16px; height: 16px;
-      border-color: rgba(0,196,160,0.3);
-      border-style: solid;
-    }
-    .app-thumb::before { top: 10px; left: 10px; border-width: 1px 0 0 1px; }
-    .app-thumb::after  { bottom: 10px; right: 10px; border-width: 0 1px 1px 0; }
-
-    .app-thumb-badge {
-      position: absolute;
-      top: 8px; right: 8px;
-      font-family: var(--mono);
-      font-size: 0.55rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 2px 7px;
-      border-radius: 2px;
-      background: rgba(0,0,0,0.6);
-      border: 1px solid rgba(0,196,160,0.2);
-      color: var(--c1);
-    }
-    .app-info { padding: 18px 20px 22px; flex: 1; }
-    .app-category {
-      font-family: var(--mono);
-      font-size: 0.6rem;
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
-    .cat-ai    { color: var(--c1); }
-    .cat-prod  { color: var(--c4); }
-    .cat-web   { color: var(--c3); }
-    .cat-other { color: var(--c5); }
-    .app-name  { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
-    .app-desc  { color: var(--muted); font-size: 0.82rem; line-height: 1.65; margin-bottom: 16px; }
-    .app-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      border: 1px solid rgba(255,255,255,0.08);
-      padding: 5px 12px;
-      border-radius: 3px;
-      transition: all 0.2s;
-    }
-    .app-link:hover { border-color: var(--c1); color: var(--c1); }
-
-    /* ── CONTACT / CTA ────────────────────────────────────────── */
-    #contact { background: var(--dark); text-align: center; }
-    .contact-glow {
-      position: absolute;
-      width: 700px; height: 400px;
-      left: 50%; top: 50%;
-      transform: translate(-50%, -50%);
-      background: radial-gradient(ellipse, rgba(0,196,160,0.1) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .contact-inner {
-      max-width: 640px;
-      margin: 0 auto;
-      padding: 120px 24px;
-      position: relative;
-      z-index: 1;
-    }
-    .contact-inner h2 {
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      font-weight: 900;
-      margin-bottom: 20px;
-      background: linear-gradient(135deg, #fff, var(--c3));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      letter-spacing: -0.02em;
-    }
-    .contact-inner p {
-      color: var(--muted);
-      font-size: 1.05rem;
-      margin-bottom: 44px;
-      line-height: 1.8;
-    }
-    .contact-links { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
-
-    /* ── FOOTER ───────────────────────────────────────────────── */
-    footer {
-      background: var(--dark2);
-      border-top: 1px solid rgba(0,196,160,0.1);
-      padding: 36px 48px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-    .footer-logo {
-      font-family: var(--mono);
-      font-size: 1rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      background: linear-gradient(90deg, var(--c1), var(--c4));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .footer-copy { font-family: var(--mono); color: var(--muted); font-size: 0.72rem; letter-spacing: 0.04em; }
-    .footer-links { display: flex; gap: 24px; list-style: none; }
-    .footer-links a {
-      font-family: var(--mono);
-      color: var(--muted);
-      font-size: 0.72rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      transition: color 0.2s;
-    }
-    .footer-links a:hover { color: var(--c4); }
-
-    /* ── RESPONSIVE ───────────────────────────────────────────── */
-    @media (max-width: 1100px) {
-      .nav-links { gap: 18px; font-size: 0.68rem; }
-    }
-    @media (max-width: 760px) {
-      nav {
-        padding: 16px 20px;
-        flex-wrap: wrap;
-        position: relative;
-      }
-      .nav-toggle { display: flex; }
-      .nav-links {
-        display: none;
-        order: 4;
-        width: 100%;
-        flex-direction: column;
-        gap: 0;
-        padding: 8px 0 16px;
-        border-top: 1px solid rgba(0,196,160,0.12);
-        margin-top: 12px;
-      }
-      .nav-links li { width: 100%; }
-      .nav-links a {
-        display: block;
-        padding: 14px 4px;
-        border-bottom: 1px solid rgba(255,255,255,0.06);
-      }
-      nav.is-open .nav-links { display: flex; }
-      .services-grid { grid-template-columns: 1fr; }
-      footer { flex-direction: column; text-align: center; }
+    /* ------- rörelse ------- */
+    .in { opacity: 0; transform: translateY(14px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .in.syns { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .in { opacity: 1; transform: none; transition: none; }
+      .knapp, .produkter a.kort { transition: none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ── NAV ─────────────────────────────────────────────────── -->
-  <nav id="site-nav">
-    <span class="nav-logo">SPEKT</span>
-    <ul class="nav-links" id="nav-menu">
-      <li><a href="#konsultation">Konsultation</a></li>
-      <li><a href="#webbutveckling">Webbutveckling</a></li>
-      <li><a href="#coaching">Coaching</a></li>
-      <li><a href="#service-3d">3D-scanning</a></li>
-    </ul>
-    <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Öppna eller stäng meny">
-      <span class="nav-toggle-lines" aria-hidden="true">
-        <span></span><span></span><span></span>
-      </span>
-    </button>
-    <a href="#contact" class="nav-cta">Kontakta oss</a>
-  </nav>
+<header class="topp">
+  <div class="yta">
+    <a class="marke" href="#">SPEKT<b>.</b></a>
+    <nav class="lankar">
+      <a href="#vad">Vad jag gör</a>
+      <a href="#byggt">Byggt av SPEKT</a>
+      <a href="#hur">Så jobbar jag</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+  </div>
+</header>
 
-  <!-- ── HERO ─────────────────────────────────────────────────── -->
-  <section class="hero">
-    <div class="hero-grid"></div>
-    <div class="hero-glow glow-teal"></div>
-    <div class="hero-glow glow-blue"></div>
-    <div class="hero-glow glow-cyan"></div>
+<section class="hero yta">
+  <div class="oga">SPEKT AB · Malmö</div>
+  <h1 class="in">Jag bygger det som <em>säljer</em>.</h1>
+  <p class="ingress in">SPEKT kombinerar säljkonsulting med AI-byggd produktutveckling och
+  3D-visualisering. <strong>Inte råd om vad du borde göra — färdiga verktyg som gör det.</strong></p>
+  <div class="cta-rad in">
+    <a class="knapp" href="mailto:linus@spekt.se?subject=Samtal%20med%20SPEKT">Boka ett samtal</a>
+    <a class="knapp tunn" href="#byggt">Se vad jag byggt</a>
+  </div>
+  <div class="bevisrad mono in">
+    <span><b>15+ år</b>i sälj</span>
+    <span><b>6 produkter</b>live just nu</span>
+    <span><b>Veckor</b>från idé till lansering</span>
+    <span><b>1,5 M företag</b>i egen databas</span>
+  </div>
+</section>
 
-    <p class="hero-eyebrow">&gt;_ spekt.init()<span class="cursor"></span></p>
-    <h1>Framtid<br>byggs idag</h1>
-    <h2>Kontakta Linus på: 072 566 88 71</h2>
-    <br>
-    <p class="hero-sub">
-      Vi accelererar <strong>försäljning och marknadsföring</strong> genom skräddarsydda digitala lösningar – och coachar era team i hela verktygsstacken: från CRM och automationsplattformar till AI-drivna arbetsflöden. Med oss får ni både systemen och kompetensen att använda dem strategiskt.
-    </p>
-    <div class="hero-buttons">
-      <a href="#services" class="btn-primary">Utforska tjänster</a>
-      <a href="#contact" class="btn-ghost">Kom igång</a>
+<section class="block" id="vad">
+  <div class="yta">
+    <div class="blockoga">Vad jag gör</div>
+    <h2>Tre saker. Gärna i kombination.</h2>
+    <div class="ben">
+      <article class="in">
+        <div class="ord">Sälj</div>
+        <p>Säljkonsulting och coaching: säljprocess, prospektering och outreach som faktiskt
+        genomförs. Jag arbetar operativt i din pipeline — inte bara rådgivande bredvid den.</p>
+      </article>
+      <article class="in">
+        <div class="ord">Bygg</div>
+        <p>AI-accelererad apputveckling: från idé till lanserad produkt på veckor, inte kvartal.
+        iOS, watchOS, tvOS, webb och backend. Fast pris per leverans.</p>
+      </article>
+      <article class="in">
+        <div class="ord">Visa</div>
+        <p>3D-skanning och visualisering: fotorealistiska digitala tvillingar av hotell, butiker
+        och fastigheter — som blir säljverktyg, inte bara snygga rundturer.</p>
+      </article>
     </div>
+  </div>
+</section>
 
-    <div class="scroll-hint">
-      <span>Scrolla</span>
-      <div class="scroll-line"></div>
-    </div>
-  </section>
-
-  <!-- ── SERVICES ──────────────────────────────────────────────── -->
-  <section id="services">
-    <div class="section-inner">
-      <p class="section-label">Vad vi gör</p>
-      <h2 class="section-title">Tjänster för<br>framtiden</h2>
-      <p class="section-desc">Från strategi till leverans — SPEKT täcker varje dimension av modern affärsutveckling.</p>
-
-      <div class="services-grid">
-
-        <div class="service-card sc-sales" id="konsultation">
-          <span class="service-tag">Core</span>
-          <h3 class="service-title">Konsultation</h3>
-          <p class="service-desc">Konsultation inom sälj, AI och strategisk affärsutveckling — vi hjälper er skärpa sälj och pipeline, välja och förankra rätt AI-initiativ och bygga tydliga tillväxt- och förändringsplaner. Affärsstrategi och teknik hänger ihop när ni ska konvertera snabbare och växa smartare.</p>
-          <a href="#contact" class="service-link sl-teal">Jobba med oss →</a>
-        </div>
-
-        <div class="service-card sc-ai" id="webbutveckling">
-          <span class="service-tag">Digital</span>
-          <h3 class="service-title">Webbutveckling</h3>
-          <p class="service-desc">Vi bygger vad ni faktiskt behöver — i rätt omfattning, med rätt mjukvara och arbetssätt — inte onödiga appar eller licensklipp. Det kan vara en landningssida för ett event, en upplevelse kopplad till Matterport och 3D, ett smalt webbverktyg eller ett tydligare flöde i Excel: lösningen formas efter er vardag. WCAG, SEO och GEO håller vi ordning på när ni ska synas och fungera digitalt.</p>
-          <a href="#contact" class="service-link sl-sky">Diskutera webbprojekt →</a>
-        </div>
-
-        <div class="service-card sc-coach" id="coaching">
-          <span class="service-tag">Growth</span>
-          <h3 class="service-title">Coaching & Träning</h3>
-          <p class="service-desc">Individuella och gruppbaserade sessioner anpassade för entreprenörer, chefer och högpresterande individer som vill ha klarhet, ansvar och bestående resultat. Vi tränar även er kring Microsoft 365: Excel, PowerPoint och AI-stöd som Microsoft Copilot — så att dokument, presentationer och arbetsflöden hänger ihop i vardagen.</p>
-          <a href="#contact" class="service-link sl-mint">Boka en session →</a>
-        </div>
-
-        <div class="service-card sc-3d" id="service-3d">
-          <span class="service-tag">Matterport</span>
-          <h3 class="service-title">3D-scanning</h3>
-          <p class="service-desc">Drivs av Matterport — vi digitaliserar verkliga miljöer i imponerande 3D. Perfekt för fastigheter, arkitektur, butiker och alla rum du vill visa upp digitalt. När det passar er verksamhet hjälper vi till att publicera på Google Street View så att besökare hittar och kliver in i miljön direkt från Google Maps.</p>
-          <a href="https://my.matterport.com" target="_blank" rel="noopener noreferrer" class="service-link sl-blue">Utforska rum →</a>
-        </div>
-
+<section class="block" id="byggt">
+  <div class="yta">
+    <div class="blockoga">Byggt av SPEKT</div>
+    <h2>Jag säljer inga metoder jag inte själv använder.</h2>
+    <p class="blockingress">Varje produkt nedan är byggd av mig, med samma AI-accelererade
+    arbetssätt jag levererar till kunder. Klicka och syna.</p>
+    <div class="produkter">
+      <a class="kort in" href="https://foretagsdata.spekt.se">
+        <div class="namn">Företagsdata</div>
+        <p>Alla Sveriges företag som en fil du äger. Sökbar offline, obegränsad export.
+        Köp en gång — ingen prenumeration.</p>
+        <div class="stat mono">1 486 382 företag · sökningar &lt; 150 ms</div>
+      </a>
+      <a class="kort in" href="https://spaceview.spekt.se">
+        <div class="namn">SpaceView</div>
+        <p>Strukturerar säljprocessen för 3D-visningar — offert, acceptans och leverans
+        i ett enda flöde.</p>
+        <div class="stat mono">offert → accept → leverans</div>
+      </a>
+      <a class="kort in" href="https://3d.spekt.se">
+        <div class="namn">3D-visningar</div>
+        <p>Fotorealistiska rundvandringar av verkliga miljöer, levererade som en länk
+        som går att dela med vem som helst.</p>
+        <div class="stat mono">skanning → länk → affär</div>
+      </a>
+      <div class="kort stilla in">
+        <div class="namn">PinSetter</div>
+        <p>Röststyrd golfscoring för iPhone och Apple Watch med AI-analys av varje runda —
+        en hel produktsvit byggd solo.</p>
+        <div class="stat mono">iOS · watchOS · tvOS</div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ── APPS / PORTFOLIO ───────────────────────────────────────── -->
-  <section id="portfolio">
-    <div class="section-inner">
-      <p class="section-label">Byggt av SPEKT</p>
-      <h2 class="section-title">Appar & Projekt</h2>
-      <p class="section-desc">Ett växande ekosystem av verktyg, appar och webbplatser — byggda för att lösa verkliga problem och tänja på gränser.</p>
-
-      <div class="portfolio-tabs">
-        <button class="tab-btn active" onclick="filterApps('all', event)">Alla</button>
-        <button class="tab-btn" onclick="filterApps('ai', event)">AI-appar</button>
-        <button class="tab-btn" onclick="filterApps('productivity', event)">Produktivitet</button>
-        <button class="tab-btn" onclick="filterApps('web', event)">Webbplatser</button>
-        <button class="tab-btn" onclick="filterApps('other', event)">Övriga appar</button>
-      </div>
-
-      <div class="apps-grid">
-
-        <!-- AI APPAR -->
-        <div class="app-card visible" data-cat="ai">
-          <div class="app-thumb app-thumb-ai">
-            <span class="app-thumb-badge">AI</span>
-          </div>
-          <div class="app-info">
-            <p class="app-category cat-ai">AI-app</p>
-            <h4 class="app-name">AI-app 1</h4>
-            <p class="app-desc">Platshållare — beskriv din AI-drivna app här.</p>
-            <a href="#" class="app-link">Kommer snart ↗</a>
-          </div>
-        </div>
-
-        <div class="app-card visible" data-cat="ai">
-          <div class="app-thumb app-thumb-ai">
-            <span class="app-thumb-badge">AI</span>
-          </div>
-          <div class="app-info">
-            <p class="app-category cat-ai">AI-app</p>
-            <h4 class="app-name">AI-app 2</h4>
-            <p class="app-desc">Platshållare — beskriv din AI-drivna app här.</p>
-            <a href="#" class="app-link">Kommer snart ↗</a>
-          </div>
-        </div>
-
-        <!-- PRODUKTIVITET -->
-        <div class="app-card visible" data-cat="productivity">
-          <div class="app-thumb app-thumb-prod">
-            <span class="app-thumb-badge">Produktivitet</span>
-          </div>
-          <div class="app-info">
-            <p class="app-category cat-prod">Produktivitet</p>
-            <h4 class="app-name">Produktivitetsapp 1</h4>
-            <p class="app-desc">Platshållare — beskriv ditt produktivitetsverktyg här.</p>
-            <a href="#" class="app-link">Kommer snart ↗</a>
-          </div>
-        </div>
-
-        <div class="app-card visible" data-cat="productivity">
-          <div class="app-thumb app-thumb-prod">
-            <span class="app-thumb-badge">Produktivitet</span>
-          </div>
-          <div class="app-info">
-            <p class="app-category cat-prod">Produktivitet</p>
-            <h4 class="app-name">Produktivitetsapp 2</h4>
-            <p class="app-desc">Platshållare — beskriv ditt produktivitetsverktyg här.</p>
-            <a href="#" class="app-link">Kommer snart ↗</a>
-          </div>
-        </div>
-
-        <!-- ÖVRIGA APPAR -->
-        <div class="app-card visible" data-cat="other">
-          <div class="app-thumb app-thumb-other"><span class="app-thumb-badge">App</span></div>
-          <div class="app-info">
-            <p class="app-category cat-other">App</p>
-            <h4 class="app-name">App 1</h4>
-            <p class="app-desc">Platshållare — beskriv din app här.</p>
-            <a href="#" class="app-link">Kommer snart ↗</a>
-          </div>
-        </div>
-
-        <div class="app-card visible" data-cat="other">
-          <div class="app-thumb app-thumb-other"><span class="app-thumb-badge">App</span></div>
-          <div class="app-info">
-            <p class="app-category cat-other">App</p>
-            <h4 class="app-name">App 2</h4>
-            <p class="app-desc">Platshållare — beskriv din app här.</p>
-            <a href="#" class="app-link">Kommer snart ↗</a>
-          </div>
-        </div>
-
-        <div class="app-card visible" data-cat="other">
-          <div class="app-thumb app-thumb-other"><span class="app-thumb-badge">App</span></div>
-          <div class="app-info">
-            <p class="app-category cat-other">App</p>
-            <h4 class="app-name">App 3</h4>
-            <p class="app-desc">Platshållare — beskriv din app här.</p>
-            <a href="#" class="app-link">Kommer snart ↗</a>
-          </div>
-        </div>
-
-        <div class="app-card visible" data-cat="other">
-          <div class="app-thumb app-thumb-other"><span class="app-thumb-badge">App</span></div>
-          <div class="app-info">
-            <p class="app-category cat-other">App</p>
-            <h4 class="app-name">App 4</h4>
-            <p class="app-desc">Platshållare — beskriv din app här.</p>
-            <a href="#" class="app-link">Kommer snart ↗</a>
-          </div>
-        </div>
-
-        <div class="app-card visible" data-cat="other">
-          <div class="app-thumb app-thumb-other"><span class="app-thumb-badge">App</span></div>
-          <div class="app-info">
-            <p class="app-category cat-other">App</p>
-            <h4 class="app-name">App 5</h4>
-            <p class="app-desc">Platshållare — beskriv din app här.</p>
-            <a href="#" class="app-link">Kommer snart ↗</a>
-          </div>
-        </div>
-
-        <div class="app-card visible" data-cat="other">
-          <div class="app-thumb app-thumb-other"><span class="app-thumb-badge">App</span></div>
-          <div class="app-info">
-            <p class="app-category cat-other">App</p>
-            <h4 class="app-name">App 6</h4>
-            <p class="app-desc">Platshållare — beskriv din app här.</p>
-            <a href="#" class="app-link">Kommer snart ↗</a>
-          </div>
-        </div>
-
-        <div class="app-card visible" data-cat="other">
-          <div class="app-thumb app-thumb-other"><span class="app-thumb-badge">App</span></div>
-          <div class="app-info">
-            <p class="app-category cat-other">App</p>
-            <h4 class="app-name">App 7</h4>
-            <p class="app-desc">Platshållare — beskriv din app här.</p>
-            <a href="#" class="app-link">Kommer snart ↗</a>
-          </div>
-        </div>
-
-        <div class="app-card visible" data-cat="other">
-          <div class="app-thumb app-thumb-other"><span class="app-thumb-badge">App</span></div>
-          <div class="app-info">
-            <p class="app-category cat-other">App</p>
-            <h4 class="app-name">App 8</h4>
-            <p class="app-desc">Platshållare — beskriv din app här.</p>
-            <a href="#" class="app-link">Kommer snart ↗</a>
-          </div>
-        </div>
-
-        <div class="app-card visible" data-cat="other">
-          <div class="app-thumb app-thumb-other"><span class="app-thumb-badge">App</span></div>
-          <div class="app-info">
-            <p class="app-category cat-other">App</p>
-            <h4 class="app-name">App 9</h4>
-            <p class="app-desc">Platshållare — beskriv din app här.</p>
-            <a href="#" class="app-link">Kommer snart ↗</a>
-          </div>
-        </div>
-
-        <div class="app-card visible" data-cat="other">
-          <div class="app-thumb app-thumb-other"><span class="app-thumb-badge">App</span></div>
-          <div class="app-info">
-            <p class="app-category cat-other">App</p>
-            <h4 class="app-name">App 10</h4>
-            <p class="app-desc">Platshållare — beskriv din app här.</p>
-            <a href="#" class="app-link">Kommer snart ↗</a>
-          </div>
-        </div>
-
-        <!-- WEBBPLATSER -->
-        <div class="app-card visible" data-cat="web">
-          <div class="app-thumb app-thumb-web"><span class="app-thumb-badge">Webbplats</span></div>
-          <div class="app-info">
-            <p class="app-category cat-web">Webbplats</p>
-            <h4 class="app-name">Webbplats 1</h4>
-            <p class="app-desc">Platshållare — lägg till en webbplats du byggt här.</p>
-            <a href="#" class="app-link">Kommer snart ↗</a>
-          </div>
-        </div>
-
-        <div class="app-card visible" data-cat="web">
-          <div class="app-thumb app-thumb-web"><span class="app-thumb-badge">Webbplats</span></div>
-          <div class="app-info">
-            <p class="app-category cat-web">Webbplats</p>
-            <h4 class="app-name">Webbplats 2</h4>
-            <p class="app-desc">Platshållare — lägg till en webbplats du byggt här.</p>
-            <a href="#" class="app-link">Kommer snart ↗</a>
-          </div>
-        </div>
-
-        <div class="app-card visible" data-cat="web">
-          <div class="app-thumb app-thumb-web"><span class="app-thumb-badge">Webbplats</span></div>
-          <div class="app-info">
-            <p class="app-category cat-web">Webbplats</p>
-            <h4 class="app-name">Webbplats 3</h4>
-            <p class="app-desc">Platshållare — lägg till en webbplats du byggt här.</p>
-            <a href="#" class="app-link">Kommer snart ↗</a>
-          </div>
-        </div>
-
-      </div>
+<section class="block" id="hur">
+  <div class="yta">
+    <div class="blockoga">Så jobbar jag</div>
+    <h2>Från samtal till resultat du äger.</h2>
+    <div class="steg">
+      <div class="in"><b>Samtal</b><p>Vi hittar det mest värdefulla att lösa först — och sätter en tydlig första leverans.</p></div>
+      <div class="in"><b>Leverans</b><p>Jag bygger, säljer eller skannar. Du ser resultat inom veckor, inte efter en förstudie.</p></div>
+      <div class="in"><b>Äg resultatet</b><p>Verktyg, data och material är ditt. Ingen inlåsning, inga licenser som håller dig gisslan.</p></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ── 3D SCANNING FEATURE ────────────────────────────────────── -->
-  <section id="scanning">
-    <div class="scanning-inner">
-      <div class="scanning-visual">
-        <div class="scanning-grid-lines"></div>
-        <div class="scan-pulse"></div>
-        <div class="scan-pulse"></div>
-        <div class="scan-pulse"></div>
-        <div class="scanning-visual-inner">
-          <div class="scan-label">Matterport 3D-vy</div>
-        </div>
-      </div>
-
-      <div>
-        <p class="section-label">Matterport-partner</p>
-        <h2 class="section-title">Kliv in i<br>vilket rum som helst</h2>
-        <p class="section-desc">
-          SPEKT levererar professionella Matterport 3D-skanningar som låter vem som helst utforska en miljö varifrån i världen. Fastigheter, showrooms, kontor, event — om det finns i verkligheten kan vi ta det online. Vi kan även publicera på Google Street View så att era lokaler och upplevelser syns där folk redan söker och navigerar.
-        </p>
-        <div class="stat-row">
-          <div class="stat-item">
-            <div class="stat-number">360°</div>
-            <div class="stat-label">Full täckning</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">4K</div>
-            <div class="stat-label">Upplösning</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">∞</div>
-            <div class="stat-label">Online-åtkomst</div>
-          </div>
-        </div>
-        <a href="https://my.matterport.com" target="_blank" rel="noopener noreferrer" class="scan-cta">
-          Utforska rum →
-        </a>
-      </div>
+<section class="block" id="om">
+  <div class="yta">
+    <div class="blockoga">Om</div>
+    <div class="om in">
+      <div class="monogram">LF</div>
+      <p><strong>Linus Fridberg.</strong> Säljare i grunden, byggare av nödvändighet. Delägare i
+      säljbolag, grundare av SPEKT. Jag har tillbringat femton år med att sälja andras produkter —
+      och de senaste åren med att bygga egna, i en takt som bara är möjlig med AI som verktyg.
+      Baserad i Malmö, arbetar i hela Sverige.</p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ── CONTACT ───────────────────────────────────────────────── -->
-  <section id="contact">
-    <div class="contact-glow"></div>
-    <div class="contact-inner">
-      <p class="section-label" style="text-align:center; display:block;">Låt oss jobba tillsammans</p>
-      <h2>Redo att ta<br>nästa steg?</h2>
-      <p>Oavsett om du behöver en säljstrategi, en AI-lösning, en 3D-skanning eller en coach — SPEKT är din partner. Låt oss starta en konversation.</p>
-      <div class="contact-links">
-        <a href="mailto:hello@spekt.se" class="btn-primary">hello@spekt.se</a>
-      </div>
+<section class="block kontakt" id="kontakt">
+  <div class="yta">
+    <div class="blockoga">Kontakt</div>
+    <h2>Berätta vad du vill sälja mer av.</h2>
+    <div class="cta-rad">
+      <a class="knapp" href="mailto:linus@spekt.se?subject=Samtal%20med%20SPEKT&body=Hej%20Linus%2C%0A%0AVi%20%C3%A4r%20%5Bbolag%5D%20och%20vill%20prata%20om%20%5Bs%C3%A4lj%20%2F%20bygga%20%2F%203D%5D.%0A%0A">Mejla mig</a>
     </div>
-  </section>
+    <p class="mejl">Eller rakt på: <a href="mailto:linus@spekt.se">linus@spekt.se</a> — svar inom en arbetsdag.</p>
+  </div>
+</section>
 
-  <!-- ── FOOTER ─────────────────────────────────────────────────── -->
-  <footer>
-    <span class="footer-logo">SPEKT</span>
-    <span class="footer-copy">© 2026 SPEKT. Alla rättigheter förbehållna.</span>
-    <ul class="footer-links">
-      <li><a href="#konsultation">Konsultation</a></li>
-      <li><a href="#webbutveckling">Webbutveckling</a></li>
-      <li><a href="#coaching">Coaching</a></li>
-      <li><a href="#service-3d">3D-scanning</a></li>
-      <li><a href="#portfolio">Appar</a></li>
-      <li><a href="#contact">Kontakt</a></li>
-    </ul>
-  </footer>
+<footer class="fot">
+  <div class="yta" style="display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;width:100%">
+    <div>© SPEKT AB · Malmö</div>
+    <nav>
+      <a href="https://foretagsdata.spekt.se">Företagsdata</a>
+      <a href="https://spaceview.spekt.se">SpaceView</a>
+      <a href="https://3d.spekt.se">3D-visningar</a>
+      <a href="mailto:linus@spekt.se">linus@spekt.se</a>
+    </nav>
+  </div>
+</footer>
 
-  <!-- ── JS ─────────────────────────────────────────────────────── -->
-  <script>
-    /* Vid besök: alltid landa på hero — inte på #portfolio eller sparad scroll. */
-    (function () {
-      if ('scrollRestoration' in history) {
-        history.scrollRestoration = 'manual';
-      }
-      var pathSearch = location.pathname + location.search;
-      function landOnHero() {
-        var h = window.location.hash;
-        if (h === '#portfolio') {
-          history.replaceState(null, '', pathSearch);
-          window.scrollTo(0, 0);
-          return;
-        }
-        if (!h) {
-          window.scrollTo(0, 0);
-        }
-      }
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', landOnHero);
-      } else {
-        landOnHero();
-      }
-      window.addEventListener('load', landOnHero);
-      window.addEventListener('pageshow', function (ev) {
-        if (!ev.persisted) return;
-        if (!window.location.hash || window.location.hash === '#portfolio') {
-          if (window.location.hash === '#portfolio') {
-            history.replaceState(null, '', pathSearch);
-          }
-          window.scrollTo(0, 0);
-        }
-      });
-    })();
-
-    function filterApps(cat, e) {
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      e.currentTarget.classList.add('active');
-      document.querySelectorAll('.app-card').forEach(card => {
-        card.classList.toggle('visible', cat === 'all' || card.dataset.cat === cat);
-      });
+<script>
+  (function () {
+    var reducerad = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var alla = document.querySelectorAll(".in");
+    if (reducerad || !("IntersectionObserver" in window)) {
+      alla.forEach(function (e) { e.classList.add("syns"); });
+      return;
     }
-
-    (function () {
-      var nav = document.getElementById('site-nav');
-      var toggle = document.getElementById('nav-toggle');
-      var menu = document.getElementById('nav-menu');
-      if (!nav || !toggle || !menu) return;
-
-      function setOpen(open) {
-        nav.classList.toggle('is-open', open);
-        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-        toggle.setAttribute('aria-label', open ? 'Stäng meny' : 'Öppna meny');
-      }
-
-      toggle.addEventListener('click', function () {
-        setOpen(!nav.classList.contains('is-open'));
+    var io = new IntersectionObserver(function (poster) {
+      poster.forEach(function (p) {
+        if (p.isIntersecting) { p.target.classList.add("syns"); io.unobserve(p.target); }
       });
-
-      menu.querySelectorAll('a').forEach(function (a) {
-        a.addEventListener('click', function () { setOpen(false); });
-      });
-
-      window.addEventListener('resize', function () {
-        if (window.matchMedia('(min-width: 761px)').matches) setOpen(false);
-      });
-    })();
-  </script>
+    }, { threshold: 0.12 });
+    alla.forEach(function (e, i) {
+      e.style.transitionDelay = Math.min(i % 4 * 90, 270) + "ms";
+      io.observe(e);
+    });
+  })();
+</script>
 
 </body>
 </html>

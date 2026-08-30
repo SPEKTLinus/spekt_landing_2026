@@ -1,5 +1,0 @@
-# Statisk landningssida. Kopierar index.html till dist/ så Netlify alltid har en
-# existerande publish-mapp (undviker "Deploy directory 'dist' does not exist").
-[build]
-  command = "mkdir -p dist && cp index.html dist/index.html"
-  publish = "dist"
