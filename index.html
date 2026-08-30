@@ -56,7 +56,37 @@
     nav.lankar { display: flex; gap: 26px; font-size: 0.88rem; }
     nav.lankar a { color: var(--dov); text-decoration: none; }
     nav.lankar a:hover { color: var(--text); }
-    @media (max-width: 620px) { nav.lankar { display: none; } }
+
+    .burgare {
+      display: none; width: 44px; height: 44px; margin-right: -8px;
+      background: none; border: none; cursor: pointer; padding: 10px;
+      flex-direction: column; justify-content: center; gap: 5px;
+    }
+    .burgare span {
+      display: block; height: 2px; width: 100%; background: var(--text);
+      border-radius: 2px; transition: transform 0.22s ease, opacity 0.22s ease;
+    }
+    .burgare[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .burgare[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .burgare[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobilmeny {
+      display: none; border-top: 1px solid var(--linje); background: var(--yta);
+    }
+    .mobilmeny.oppen { display: block; }
+    .mobilmeny a {
+      display: block; padding: 16px 24px; text-decoration: none;
+      color: var(--text); font-weight: 700; font-size: 1.05rem;
+      border-bottom: 1px solid var(--linje);
+    }
+    .mobilmeny a:last-child { border-bottom: none; }
+    .mobilmeny a:active { color: var(--accent); }
+
+    @media (max-width: 620px) {
+      nav.lankar { display: none; }
+      .burgare { display: flex; }
+    }
+    @media (prefers-reduced-motion: reduce) { .burgare span { transition: none; } }
 
     /* ------- hero ------- */
     .hero { padding: 108px 0 76px; }
@@ -177,7 +207,16 @@
       <a href="#hur">Så jobbar jag</a>
       <a href="#kontakt">Kontakt</a>
     </nav>
+    <button class="burgare" aria-label="Meny" aria-expanded="false" aria-controls="mobilmeny">
+      <span></span><span></span><span></span>
+    </button>
   </div>
+  <nav class="mobilmeny" id="mobilmeny">
+    <a href="#vad">Vad jag gör</a>
+    <a href="#byggt">Byggt av SPEKT</a>
+    <a href="#hur">Så jobbar jag</a>
+    <a href="#kontakt">Kontakt</a>
+  </nav>
 </header>
 
 <section class="hero yta">
@@ -325,6 +364,24 @@
     setTimeout(function () {
       alla.forEach(function (e) { e.classList.add("syns"); });
     }, 2200);
+  })();
+
+  (function () {
+    var knapp = document.querySelector(".burgare");
+    var meny = document.getElementById("mobilmeny");
+    function satt(oppen) {
+      knapp.setAttribute("aria-expanded", oppen ? "true" : "false");
+      meny.classList.toggle("oppen", oppen);
+    }
+    knapp.addEventListener("click", function () {
+      satt(knapp.getAttribute("aria-expanded") !== "true");
+    });
+    meny.querySelectorAll("a").forEach(function (a) {
+      a.addEventListener("click", function () { satt(false); });
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") satt(false);
+    });
   })();
 </script>
 
