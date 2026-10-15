@@ -3,16 +3,33 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SPEKT — Sälj. Bygg. Visa.</title>
-  <meta name="description" content="Säljkonsulting, AI-byggd produktutveckling och 3D-visualisering från Malmö. Byggt av den som säljer det.">
-  <meta property="og:title" content="SPEKT — Jag bygger det som säljer">
-  <meta property="og:description" content="Säljkonsulting, AI-byggd produktutveckling och 3D-visualisering. Inte råd — färdiga verktyg.">
+  <title>SPEKT — System, appar och hemsidor för svenska SME</title>
+  <meta name="description" content="SPEKT bygger system, appar, interna verktyg och hemsidor för svenska små och medelstora företag. Fast pris per leverans, du äger resultatet, klart på veckor.">
+  <meta property="og:title" content="SPEKT — System, appar och hemsidor för svenska SME">
+  <meta property="og:description" content="Interna verktyg, appar och hemsidor till fast pris per leverans. Du äger koden. Veckor, inte kvartal.">
   <meta property="og:url" content="https://spekt.se/">
   <meta property="og:type" content="website">
+  <meta property="og:locale" content="sv_SE">
+  <meta property="og:site_name" content="SPEKT">
+  <meta name="theme-color" content="#0E1116">
   <link rel="canonical" href="https://spekt.se/">
   <link rel="icon" href="/logga.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&family=Martian+Mono:wght@400;600&display=swap">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "SPEKT AB",
+    "url": "https://spekt.se/",
+    "logo": "https://spekt.se/logga.svg",
+    "email": "linus@spekt.se",
+    "description": "Systembyggande, appar, interna verktyg och hemsidor för svenska små och medelstora företag.",
+    "areaServed": "SE",
+    "address": { "@type": "PostalAddress", "addressLocality": "Löttorp", "addressRegion": "Öland", "addressCountry": "SE" },
+    "knowsAbout": ["Systemutveckling", "Apputveckling", "Interna verktyg", "CRM", "Hemsidor", "iOS"]
+  }
+  </script>
   <style>
     :root {
       --grund: #0E1116;
@@ -42,6 +59,13 @@
     .yta { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
     a { color: inherit; }
     :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+    .hoppa {
+      position: absolute; left: 12px; top: -60px; z-index: 20;
+      background: var(--accent); color: #14100A; padding: 10px 16px; border-radius: 6px;
+      font-weight: 700; text-decoration: none;
+    }
+    .hoppa:focus { top: 12px; }
 
     /* ------- nav ------- */
     header.topp {
@@ -91,7 +115,7 @@
     @media (prefers-reduced-motion: reduce) { .burgare span { transition: none; } }
 
     /* ------- hero ------- */
-    .hero { padding: 108px 0 76px; }
+    .hero { padding-top: 108px; padding-bottom: 76px; }
     .oga {
       font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase;
       color: var(--dov); margin-bottom: 26px;
@@ -131,14 +155,26 @@
     }
     .blockingress { color: var(--dov); max-width: 58ch; margin: 0 0 44px; }
 
-    .ben { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 18px; }
+    .ben { display: grid; grid-template-columns: 3fr 2fr; gap: 18px; }
     .ben article {
       background: var(--yta); border: 1px solid var(--linje); border-radius: 10px;
-      padding: 28px 26px;
+      padding: 30px 28px; display: flex; flex-direction: column;
     }
-    .ben .ord { font-size: 1.55rem; font-weight: 850; letter-spacing: 0.01em; margin-bottom: 10px; }
-    .ben .ord::after { content: "."; color: var(--accent); }
-    .ben p { margin: 0; color: var(--dov); font-size: 0.95rem; }
+    .ben article.forst { border-color: var(--accent-djup); }
+    .ben .etikett { font-size: 0.68rem; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px; }
+    .ben h3 { font-size: 1.55rem; font-weight: 850; letter-spacing: 0.01em; margin: 0 0 10px; }
+    .ben h3::after { content: "."; color: var(--accent); }
+    .ben p { margin: 0 0 16px; color: var(--dov); font-size: 0.95rem; }
+    .ben ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; font-size: 0.93rem; }
+    .ben li { padding-left: 20px; position: relative; }
+    .ben li::before { content: "→"; position: absolute; left: 0; color: var(--accent); }
+    .sidorad {
+      margin-top: 18px; padding: 18px 22px; border: 1px dashed var(--linje); border-radius: 10px;
+      color: var(--dov); font-size: 0.92rem;
+    }
+    .sidorad strong { color: var(--text); }
+    .sidorad a { color: var(--text); text-underline-offset: 3px; text-decoration-color: var(--accent-djup); }
+    @media (max-width: 760px) { .ben { grid-template-columns: 1fr; } }
 
     .produkter { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
     .produkter .kort {
@@ -164,15 +200,9 @@
     .steg b { display: block; font-size: 1.06rem; font-weight: 800; margin-bottom: 6px; }
     .steg p { margin: 0; font-size: 0.92rem; color: var(--dov); }
 
-    .om { display: grid; grid-template-columns: 84px 1fr; gap: 28px; align-items: start; max-width: 720px; }
-    .monogram {
-      width: 84px; height: 84px; border-radius: 12px; background: var(--yta);
-      border: 1px solid var(--linje); display: grid; place-items: center;
-      font-weight: 850; font-size: 2rem; color: var(--accent);
-    }
+    .om { display: grid; gap: 16px; max-width: 62ch; }
     .om p { margin: 0; color: var(--dov); }
     .om p strong { color: var(--text); }
-    @media (max-width: 520px) { .om { grid-template-columns: 1fr; } }
 
     .kontakt { text-align: left; }
     .kontakt h2 { max-width: 18ch; }
@@ -200,13 +230,15 @@
 </head>
 <body>
 
+<a class="hoppa" href="#innehall">Hoppa till innehållet</a>
+
 <header class="topp">
   <div class="yta">
-    <a class="marke" href="#"><img src="/logga.svg" alt="">SPEKT<b>.</b></a>
+    <a class="marke" href="#" aria-label="SPEKT, till toppen"><img src="/logga.svg" alt="">SPEKT<b>.</b></a>
     <nav class="lankar">
-      <a href="#vad">Vad jag gör</a>
-      <a href="#byggt">Byggt av SPEKT</a>
-      <a href="#hur">Så jobbar jag</a>
+      <a href="#erbjudande">Erbjudande</a>
+      <a href="#byggt">Leveranser</a>
+      <a href="#hur">Så jobbar vi</a>
       <a href="#kontakt">Kontakt</a>
     </nav>
     <button class="burgare" aria-label="Meny" aria-expanded="false" aria-controls="mobilmeny">
@@ -214,110 +246,122 @@
     </button>
   </div>
   <nav class="mobilmeny" id="mobilmeny">
-    <a href="#vad">Vad jag gör</a>
-    <a href="#byggt">Byggt av SPEKT</a>
-    <a href="#hur">Så jobbar jag</a>
+    <a href="#erbjudande">Erbjudande</a>
+    <a href="#byggt">Leveranser</a>
+    <a href="#hur">Så jobbar vi</a>
     <a href="#kontakt">Kontakt</a>
   </nav>
 </header>
 
+<main id="innehall">
+
 <section class="hero yta">
-  <div class="oga">SPEKT AB · Öland</div>
-  <h1 class="in">Jag bygger det som <em>säljer</em>.</h1>
-  <p class="ingress in">SPEKT kombinerar säljkonsulting med AI-byggd produktutveckling och
-  3D-visualisering. <strong>Inte råd om vad du borde göra — färdiga verktyg som gör det.</strong></p>
+  <div class="oga">SPEKT AB · System &amp; hemsidor för svenska SME</div>
+  <h1 class="in">System som <em>fungerar</em>. Sajter som säljer.</h1>
+  <p class="ingress in">Vi bygger interna verktyg, appar och hemsidor åt små och medelstora
+  företag i Sverige. <strong>Fast pris per leverans, du äger det som byggs, och det är klart på
+  veckor — inte kvartal.</strong></p>
   <div class="cta-rad in">
-    <a class="knapp" href="mailto:linus@spekt.se?subject=Samtal%20med%20SPEKT">Boka ett samtal</a>
-    <a class="knapp tunn" href="#byggt">Se vad jag byggt</a>
+    <a class="knapp" href="mailto:linus@spekt.se?subject=Boka%2030%20min%20digitalt%20m%C3%B6te">Boka 30 min digitalt möte</a>
+    <a class="knapp tunn" href="#byggt">Se vad vi byggt</a>
   </div>
   <div class="bevisrad mono in">
-    <span><b>15+ år</b>i sälj</span>
-    <span><b>6 produkter</b>live just nu</span>
-    <span><b>Veckor</b>från idé till lansering</span>
-    <span><b>1,5 M företag</b>i egen databas</span>
+    <span><b>Fast pris</b>per leverans</span>
+    <span><b>Veckor</b>från idé till drift</span>
+    <span><b>Din kod</b>ingen inlåsning</span>
+    <span><b>15+ år</b>i sälj och affär</span>
   </div>
 </section>
 
-<section class="block" id="vad">
+<section class="block" id="erbjudande">
   <div class="yta">
-    <div class="blockoga">Vad jag gör</div>
-    <h2>Tre saker. Gärna i kombination.</h2>
+    <div class="blockoga">Erbjudande</div>
+    <h2>Två saker. System först.</h2>
+    <p class="blockingress">De flesta bolag vi möter har en hemsida. Det de saknar är verktyget
+    som gör jobbet bakom den — offerten som tar en timme, kundlistan i tre kalkylark, rapporten
+    någon sammanställer för hand varje fredag.</p>
     <div class="ben">
-      <article class="in">
-        <div class="ord">Sälj</div>
-        <p>Säljkonsulting och coaching: säljprocess, prospektering och outreach som faktiskt
-        genomförs. Jag arbetar operativt i din pipeline — inte bara rådgivande bredvid den.</p>
+      <article class="forst in">
+        <div class="etikett mono">01 · Huvudspår</div>
+        <h3>System &amp; appar</h3>
+        <p>Interna verktyg, kundsystem och appar byggda för hur just ni arbetar. Vi börjar med det
+        som kostar mest tid i dag och levererar det först.</p>
+        <ul>
+          <li>Interna verktyg, CRM och säljstöd</li>
+          <li>Kundportaler, bokning och offertflöden</li>
+          <li>Appar för iPhone, Apple Watch och webb</li>
+          <li>Integrationer mot det ni redan har</li>
+          <li>Fast pris per leverans — du vet kostnaden innan vi börjar</li>
+          <li>Du äger koden och datan</li>
+        </ul>
       </article>
       <article class="in">
-        <div class="ord">Bygg</div>
-        <p>AI-accelererad apputveckling: från idé till lanserad produkt på veckor, inte kvartal.
-        iOS, watchOS, tvOS, webb och backend. Fast pris per leverans.</p>
-      </article>
-      <article class="in">
-        <div class="ord">Visa</div>
-        <p>3D-skanning och visualisering: fotorealistiska digitala tvillingar av hotell, butiker
-        och fastigheter — som blir säljverktyg, inte bara snygga rundturer.</p>
+        <div class="etikett mono">02</div>
+        <h3>Hemsidor</h3>
+        <p>En sajt som laddar snabbt, är byggd för mobilen och leder besökaren till ett
+        tydligt nästa steg. Med samma omsorg som systemen.</p>
+        <ul>
+          <li>En tydlig väg till kontakt eller köp</li>
+          <li>Grundläggande SEO och tillgänglighet från start</li>
+          <li>Kopplad till era system när det behövs</li>
+        </ul>
       </article>
     </div>
+    <p class="sidorad in"><strong>Även:</strong> <a href="https://foretagsdata.spekt.se">Företagsdata</a> —
+    Sveriges företag som en fil du äger, för prospektering och säljlistor. Köp en gång, ingen prenumeration.</p>
   </div>
 </section>
 
 <section class="block" id="byggt">
   <div class="yta">
     <div class="blockoga">Byggt av SPEKT</div>
-    <h2>Jag säljer inga metoder jag inte själv använder.</h2>
-    <p class="blockingress">Varje produkt nedan är byggd av mig, med samma AI-accelererade
-    arbetssätt jag levererar till kunder. Klicka och syna.</p>
+    <h2>Vi säljer inget arbetssätt vi inte själva använder.</h2>
+    <p class="blockingress">Allt nedan är byggt av oss, i drift, med samma AI-accelererade
+    arbetssätt vi levererar till kunder. Det som är publikt kan du klicka in på och syna.</p>
     <div class="produkter">
+      <div class="kort stilla in">
+        <div class="namn">Business hub &amp; CRM</div>
+        <p>Internt säljsystem: prospekthantering, samtalsanteckningar, flöden och egen
+        företagsdata i ett. Motorn bakom vår egen försäljning — och samma typ av system vi bygger åt kunder.</p>
+        <div class="stat mono">internt verktyg · webb + app</div>
+      </div>
+      <a class="kort in" href="https://pinsetter.se">
+        <div class="namn">PinSetter</div>
+        <p>Röststyrd golfscoring för iPhone och Apple Watch med AI-analys, backend, tränarwebb
+        och en separat app för greenkeepers — en hel produktsvit, från klockan till tv:n.</p>
+        <div class="stat mono">iOS · watchOS · tvOS · webb</div>
+      </a>
       <a class="kort in" href="https://foretagsdata.spekt.se">
         <div class="namn">Företagsdata</div>
         <p>Alla Sveriges företag som en fil du äger. Sökbar offline, obegränsad export.
         Köp en gång — ingen prenumeration.</p>
         <div class="stat mono">1 486 382 företag · sökningar &lt; 150 ms</div>
       </a>
-      <a class="kort in" href="https://spaceview.spekt.se">
-        <div class="namn">SpaceView</div>
-        <p>Fotorealistiska 3D-visningar av hotell, butiker och fastigheter — och hela
-        säljprocessen runt dem: skanning, offert, acceptans och leverans i ett flöde.</p>
-        <div class="stat mono">skanning → offert → affär</div>
-      </a>
-      <a class="kort in" href="https://pinsetter.se">
-        <div class="namn">PinSetter</div>
-        <p>Röststyrd golfscoring för iPhone och Apple Watch med AI-analys av varje runda —
-        en hel produktsvit byggd solo.</p>
-        <div class="stat mono">iOS · watchOS · tvOS</div>
-      </a>
-      <div class="kort stilla in">
-        <div class="namn">Business hub &amp; CRM</div>
-        <p>Skräddarsydda säljsystem: prospekthantering, flöden och egen företagsdata i ett.
-        Motorn bakom min egen försäljning — och byggbar för din.</p>
-        <div class="stat mono">prospekt → flöde → affär</div>
-      </div>
     </div>
   </div>
 </section>
 
 <section class="block" id="hur">
   <div class="yta">
-    <div class="blockoga">Så jobbar jag</div>
+    <div class="blockoga">Så jobbar vi</div>
     <h2>Från samtal till resultat du äger.</h2>
     <div class="steg">
-      <div class="in"><b>Samtal</b><p>Vi hittar det mest värdefulla att lösa först — och sätter en tydlig första leverans.</p></div>
-      <div class="in"><b>Leverans</b><p>Jag bygger, säljer eller skannar. Du ser resultat inom veckor, inte efter en förstudie.</p></div>
-      <div class="in"><b>Äg resultatet</b><p>Verktyg, data och material är ditt. Ingen inlåsning, inga licenser som håller dig gisslan.</p></div>
+      <div class="in"><b>Samtal</b><p>Vi hittar det som ger mest värde att lösa — och spikar en tydlig första leverans.</p></div>
+      <div class="in"><b>Leverans</b><p>Fast pris, kort ledtid. Du testar riktiga versioner inom veckor — inte en förstudie.</p></div>
+      <div class="in"><b>Äg resultatet</b><p>Koden, datan och domänen är dina. Ingen inlåsning, inga licenser som gör dig till gisslan.</p></div>
     </div>
   </div>
 </section>
 
 <section class="block" id="om">
   <div class="yta">
-    <div class="blockoga">Om</div>
+    <div class="blockoga">Om oss</div>
+    <h2>Säljare i grunden, byggare av nödvändighet.</h2>
     <div class="om in">
-      <div class="monogram">LF</div>
-      <p><strong>Linus Fridberg.</strong> Säljare i grunden, byggare av nödvändighet. Delägare i
-      säljbolag, grundare av SPEKT. Jag har tillbringat femton år med att sälja andras produkter —
-      och de senaste åren med att bygga egna, i en takt som bara är möjlig med AI som verktyg.
-      Baserad i Löttorp på Öland, arbetar i hela Sverige.</p>
+      <p>Femton år av att sälja andras produkter har lärt oss vad ett system måste klara i
+      vardagen. Nu bygger vi egna — och åt kunder — i en takt som bara är möjlig med AI som
+      verktyg. <strong>Du pratar direkt med oss som bygger, hela vägen.</strong></p>
+      <p>Vi finns i Löttorp på Öland och arbetar digitalt med kunder i hela Sverige.</p>
     </div>
   </div>
 </section>
@@ -325,20 +369,24 @@
 <section class="block kontakt" id="kontakt">
   <div class="yta">
     <div class="blockoga">Kontakt</div>
-    <h2>Berätta vad du vill sälja mer av.</h2>
+    <h2>Vad tar mest tid hos er i dag?</h2>
+    <p class="blockingress">30 minuter digitalt. Du berättar vad som skaver, vi säger ärligt om och
+    hur det går att bygga — och vad en första leverans skulle kosta.</p>
     <div class="cta-rad">
-      <a class="knapp" href="mailto:linus@spekt.se?subject=Samtal%20med%20SPEKT&body=Hej%20Linus%2C%0A%0AVi%20%C3%A4r%20%5Bbolag%5D%20och%20vill%20prata%20om%20%5Bs%C3%A4lj%20%2F%20bygga%20%2F%203D%5D.%0A%0A">Mejla mig</a>
+      <a class="knapp" href="mailto:linus@spekt.se?subject=Boka%2030%20min%20digitalt%20m%C3%B6te&body=Hej%2C%0A%0AVi%20%C3%A4r%20%5Bbolag%5D%20och%20vill%20prata%20om%20%5Bsystem%20%2F%20app%20%2F%20hemsida%5D.%0A%0AF%C3%B6rslag%20p%C3%A5%20tider%3A%20%0A">Boka 30 min digitalt möte</a>
     </div>
     <p class="mejl">Eller rakt på: <a href="mailto:linus@spekt.se">linus@spekt.se</a> — svar inom en arbetsdag.</p>
   </div>
 </section>
 
+</main>
+
 <footer class="fot">
   <div class="yta" style="display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;width:100%">
-    <div>© SPEKT AB · Löttorp, Öland</div>
-    <nav>
+    <div>© SPEKT AB · Löttorp, Öland<br>Samarbetspartner: <a href="https://wesales.se" rel="noopener">WeSales</a></div>
+    <nav aria-label="Sidfot">
+      <a href="#erbjudande">Erbjudande</a>
       <a href="https://foretagsdata.spekt.se">Företagsdata</a>
-      <a href="https://spaceview.spekt.se">SpaceView</a>
       <a href="https://pinsetter.se">PinSetter</a>
       <a href="mailto:linus@spekt.se">linus@spekt.se</a>
     </nav>

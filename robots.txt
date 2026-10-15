@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://spekt.se/sitemap.xml
