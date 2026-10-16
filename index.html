@@ -30,203 +30,8 @@
     "knowsAbout": ["Systemutveckling", "Apputveckling", "Interna verktyg", "CRM", "Hemsidor", "iOS"]
   }
   </script>
-  <style>
-    :root {
-      --grund: #0E1116;
-      --yta: #151B23;
-      --yta-ljus: #1C242F;
-      --linje: #232C38;
-      --text: #EDECE4;
-      --dov: #97A1AC;
-      --accent: #F0A63C;
-      --accent-djup: #C9821E;
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      background: var(--grund);
-      color: var(--text);
-      font-family: "Schibsted Grotesk", "Helvetica Neue", system-ui, sans-serif;
-      font-size: 17px;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-    .mono {
-      font-family: "Martian Mono", ui-monospace, Menlo, monospace;
-      font-variant-numeric: tabular-nums;
-    }
-    .yta { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
-    a { color: inherit; }
-    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
-
-    .hoppa {
-      position: absolute; left: 12px; top: -60px; z-index: 20;
-      background: var(--accent); color: #14100A; padding: 10px 16px; border-radius: 6px;
-      font-weight: 700; text-decoration: none;
-    }
-    .hoppa:focus { top: 12px; }
-
-    /* ------- nav ------- */
-    header.topp {
-      position: sticky; top: 0; z-index: 10;
-      background: color-mix(in srgb, var(--grund) 88%, transparent);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--linje);
-    }
-    .topp .yta { display: flex; align-items: center; justify-content: space-between; height: 60px; }
-    .marke { font-weight: 800; letter-spacing: 0.06em; font-size: 1.02rem; text-decoration: none;
-             display: flex; align-items: center; gap: 10px; }
-    .marke img { height: 24px; width: 24px; }
-    .marke b { color: var(--accent); }
-    nav.lankar { display: flex; gap: 26px; font-size: 0.88rem; }
-    nav.lankar a { color: var(--dov); text-decoration: none; }
-    nav.lankar a:hover { color: var(--text); }
-
-    .burgare {
-      display: none; width: 44px; height: 44px; margin-right: -8px;
-      background: none; border: none; cursor: pointer; padding: 10px;
-      flex-direction: column; justify-content: center; gap: 5px;
-    }
-    .burgare span {
-      display: block; height: 2px; width: 100%; background: var(--text);
-      border-radius: 2px; transition: transform 0.22s ease, opacity 0.22s ease;
-    }
-    .burgare[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .burgare[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
-    .burgare[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-    .mobilmeny {
-      display: none; border-top: 1px solid var(--linje); background: var(--yta);
-    }
-    .mobilmeny.oppen { display: block; }
-    .mobilmeny a {
-      display: block; padding: 16px 24px; text-decoration: none;
-      color: var(--text); font-weight: 700; font-size: 1.05rem;
-      border-bottom: 1px solid var(--linje);
-    }
-    .mobilmeny a:last-child { border-bottom: none; }
-    .mobilmeny a:active { color: var(--accent); }
-
-    @media (max-width: 620px) {
-      nav.lankar { display: none; }
-      .burgare { display: flex; }
-    }
-    @media (prefers-reduced-motion: reduce) { .burgare span { transition: none; } }
-
-    /* ------- hero ------- */
-    .hero { padding-top: 108px; padding-bottom: 76px; }
-    .oga {
-      font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--dov); margin-bottom: 26px;
-    }
-    h1 {
-      font-size: clamp(2.7rem, 7.5vw, 5.2rem);
-      font-weight: 850; font-stretch: 105%;
-      line-height: 1.02; letter-spacing: -0.022em;
-      margin: 0 0 26px; max-width: 13ch; text-wrap: balance;
-    }
-    h1 em { font-style: normal; color: var(--accent); }
-    .ingress { font-size: 1.22rem; color: var(--dov); max-width: 52ch; margin: 0 0 40px; }
-    .ingress strong { color: var(--text); font-weight: 600; }
-    .cta-rad { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
-    .knapp {
-      display: inline-block; text-decoration: none; font-weight: 700; font-size: 0.98rem;
-      padding: 14px 26px; border-radius: 6px;
-      background: var(--accent); color: #14100A; border: 1px solid var(--accent);
-      transition: transform 0.15s ease, background 0.15s ease;
-    }
-    .knapp:hover { background: #F7B95E; transform: translateY(-1px); }
-    .knapp.tunn { background: transparent; color: var(--text); border-color: var(--linje); }
-    .knapp.tunn:hover { border-color: var(--dov); background: var(--yta); }
-    .bevisrad {
-      display: flex; gap: 34px; flex-wrap: wrap;
-      margin-top: 62px; padding-top: 26px; border-top: 1px solid var(--linje);
-      font-size: 0.72rem; color: var(--dov);
-    }
-    .bevisrad span b { display: block; color: var(--text); font-size: 1.05rem; font-weight: 600; margin-bottom: 2px; }
-
-    /* ------- sektioner ------- */
-    section.block { padding: 84px 0; border-top: 1px solid var(--linje); }
-    .blockoga { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
-    h2 {
-      font-size: clamp(1.7rem, 3.6vw, 2.5rem); font-weight: 800; letter-spacing: -0.015em;
-      margin: 0 0 18px; max-width: 24ch; text-wrap: balance;
-    }
-    .blockingress { color: var(--dov); max-width: 58ch; margin: 0 0 44px; }
-
-    .ben { display: grid; grid-template-columns: 3fr 2fr; gap: 18px; }
-    .ben article {
-      background: var(--yta); border: 1px solid var(--linje); border-radius: 10px;
-      padding: 30px 28px; display: flex; flex-direction: column;
-    }
-    .ben article.forst { border-color: var(--accent-djup); }
-    .ben .etikett { font-size: 0.68rem; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px; }
-    .ben h3 { font-size: 1.55rem; font-weight: 850; letter-spacing: 0.01em; margin: 0 0 10px; }
-    .ben h3::after { content: "."; color: var(--accent); }
-    .ben p { margin: 0 0 16px; color: var(--dov); font-size: 0.95rem; }
-    .ben ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; font-size: 0.93rem; }
-    .ben li { padding-left: 20px; position: relative; }
-    .ben li::before { content: "→"; position: absolute; left: 0; color: var(--accent); }
-    .sidorad {
-      margin-top: 18px; padding: 18px 22px; border: 1px dashed var(--linje); border-radius: 10px;
-      color: var(--dov); font-size: 0.92rem;
-    }
-    .sidorad strong { color: var(--text); }
-    .sidorad a { color: var(--text); text-underline-offset: 3px; text-decoration-color: var(--accent-djup); }
-    @media (max-width: 760px) { .ben { grid-template-columns: 1fr; } }
-
-    .produkter { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
-    .produkter .kort {
-      display: flex; flex-direction: column; gap: 10px;
-      background: var(--yta); border: 1px solid var(--linje); border-radius: 10px;
-      padding: 26px; text-decoration: none;
-    }
-    .produkter a.kort { transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease; }
-    .produkter a.kort:hover { transform: translateY(-3px); border-color: var(--accent-djup); background: var(--yta-ljus); }
-    .produkter .namn { font-weight: 800; font-size: 1.12rem; display: flex; justify-content: space-between; align-items: baseline; }
-    .produkter .namn::after { content: "↗"; color: var(--accent); font-size: 0.9rem; }
-    .produkter .kort.stilla .namn::after { content: ""; }
-    .produkter p { margin: 0; color: var(--dov); font-size: 0.92rem; flex: 1; }
-    .produkter .stat { font-size: 0.68rem; color: var(--accent); letter-spacing: 0.04em; }
-
-    .steg { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 28px; counter-reset: s; }
-    .steg div { counter-increment: s; border-top: 2px solid var(--accent); padding-top: 16px; }
-    .steg div::before {
-      content: "0" counter(s);
-      font-family: "Martian Mono", ui-monospace, monospace;
-      font-size: 0.72rem; color: var(--dov); display: block; margin-bottom: 10px;
-    }
-    .steg b { display: block; font-size: 1.06rem; font-weight: 800; margin-bottom: 6px; }
-    .steg p { margin: 0; font-size: 0.92rem; color: var(--dov); }
-
-    .om { display: grid; gap: 16px; max-width: 62ch; }
-    .om p { margin: 0; color: var(--dov); }
-    .om p strong { color: var(--text); }
-
-    .kontakt { text-align: left; }
-    .kontakt h2 { max-width: 18ch; }
-    .kontakt .mejl { color: var(--dov); font-size: 0.9rem; margin-top: 22px; }
-    .kontakt .mejl a { color: var(--text); text-decoration: underline; text-decoration-color: var(--accent-djup); text-underline-offset: 4px; }
-
-    footer.fot {
-      border-top: 1px solid var(--linje); padding: 34px 0 56px;
-      display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap;
-      font-size: 0.8rem; color: var(--dov);
-    }
-    footer.fot nav { display: flex; gap: 18px; flex-wrap: wrap; }
-    footer.fot a { color: var(--dov); text-decoration: none; }
-    footer.fot a:hover { color: var(--text); }
-
-    /* ------- rörelse ------- */
-    .in { opacity: 0; transform: translateY(14px); transition: opacity 0.55s ease, transform 0.55s ease; }
-    .in.syns { opacity: 1; transform: none; }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      .in { opacity: 1; transform: none; transition: none; }
-      .knapp, .produkter a.kort { transition: none; }
-    }
-  </style>
+  <script>document.documentElement.classList.add("js")</script>
+  <link rel="stylesheet" href="/stil.css">
 </head>
 <body>
 
@@ -237,6 +42,7 @@
     <a class="marke" href="#" aria-label="SPEKT, till toppen"><img src="/logga.svg" alt="">SPEKT<b>.</b></a>
     <nav class="lankar">
       <a href="#erbjudande">Erbjudande</a>
+      <a href="/agents">Agents</a>
       <a href="#byggt">Leveranser</a>
       <a href="#hur">Så jobbar vi</a>
       <a href="#kontakt">Kontakt</a>
@@ -247,6 +53,7 @@
   </div>
   <nav class="mobilmeny" id="mobilmeny">
     <a href="#erbjudande">Erbjudande</a>
+    <a href="/agents">Agents</a>
     <a href="#byggt">Leveranser</a>
     <a href="#hur">Så jobbar vi</a>
     <a href="#kontakt">Kontakt</a>
@@ -307,6 +114,8 @@
         </ul>
       </article>
     </div>
+    <p class="sidorad in"><strong>Nytt:</strong> <a href="/agents">Spekt Agents</a> — AI-agenter som vi
+    bygger, driver och kopplar in i era system. Månadsabonnemang per agent.</p>
     <p class="sidorad in"><strong>Även:</strong> <a href="https://foretagsdata.spekt.se">Företagsdata</a> —
     Sveriges företag som en fil du äger, för prospektering och säljlistor. Köp en gång, ingen prenumeration.</p>
   </div>
@@ -386,6 +195,7 @@
     <div>© SPEKT AB · Löttorp, Öland<br>Samarbetspartner: <a href="https://wesales.se" rel="noopener">WeSales</a></div>
     <nav aria-label="Sidfot">
       <a href="#erbjudande">Erbjudande</a>
+      <a href="/agents">Agents</a>
       <a href="https://foretagsdata.spekt.se">Företagsdata</a>
       <a href="https://pinsetter.se">PinSetter</a>
       <a href="mailto:linus@spekt.se">linus@spekt.se</a>
@@ -393,47 +203,7 @@
   </div>
 </footer>
 
-<script>
-  (function () {
-    var reducerad = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    var alla = document.querySelectorAll(".in");
-    if (reducerad || !("IntersectionObserver" in window)) {
-      alla.forEach(function (e) { e.classList.add("syns"); });
-      return;
-    }
-    var io = new IntersectionObserver(function (poster) {
-      poster.forEach(function (p) {
-        if (p.isIntersecting) { p.target.classList.add("syns"); io.unobserve(p.target); }
-      });
-    }, { threshold: 0.12 });
-    alla.forEach(function (e, i) {
-      e.style.transitionDelay = Math.min(i % 4 * 90, 270) + "ms";
-      io.observe(e);
-    });
-    // om sidan laddas i bakgrunden triggar aldrig observern — visa allt ändå
-    setTimeout(function () {
-      alla.forEach(function (e) { e.classList.add("syns"); });
-    }, 2200);
-  })();
-
-  (function () {
-    var knapp = document.querySelector(".burgare");
-    var meny = document.getElementById("mobilmeny");
-    function satt(oppen) {
-      knapp.setAttribute("aria-expanded", oppen ? "true" : "false");
-      meny.classList.toggle("oppen", oppen);
-    }
-    knapp.addEventListener("click", function () {
-      satt(knapp.getAttribute("aria-expanded") !== "true");
-    });
-    meny.querySelectorAll("a").forEach(function (a) {
-      a.addEventListener("click", function () { satt(false); });
-    });
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") satt(false);
-    });
-  })();
-</script>
+<script src="/sida.js"></script>
 
 </body>
 </html>
