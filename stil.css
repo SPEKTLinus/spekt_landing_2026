@@ -22,10 +22,12 @@
   --yta: #151B23;
   --yta-ljus: #1C242F;
   --linje: #232C38;
-  --text: #EDECE4;
+  --text: #F6F5F2;         /* loggans benvita text */
   --dov: #97A1AC;
-  --accent: #F0A63C;
-  --accent-djup: #C9821E;
+  /* färgerna från loggan, samma som SpaceView */
+  --accent: #E8483A;       /* loggans röda halva: knappar, ramar, markeringar */
+  --accent-djup: #B8392D;  /* mörkare röd: understrykningar, kanter vid hovring */
+  --accent-ljus: #F4A097;  /* loggans laxrosa halva: liten text på mörk botten (bättre kontrast än rött) */
   --falt-kant: #667080;
   --topp-h: 60px;
 }
@@ -47,6 +49,7 @@ body {
 .yta { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
 a { color: inherit; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+::selection { background: var(--accent); color: #14100A; }
 
 .hoppa {
   position: absolute; left: 12px; top: -60px; z-index: 20;
@@ -63,14 +66,12 @@ header.topp {
   border-bottom: 1px solid var(--linje);
 }
 .topp .yta { display: flex; align-items: center; justify-content: space-between; height: var(--topp-h); }
-.marke { font-weight: 800; letter-spacing: 0.06em; font-size: 1.02rem; text-decoration: none;
-         display: flex; align-items: center; gap: 10px; }
-.marke img { height: 24px; width: 24px; }
-.marke b { color: var(--accent); }
+.marke { display: flex; align-items: center; text-decoration: none; }
+.marke img { display: block; height: 26px; width: auto; }
 nav.lankar { display: flex; gap: 26px; font-size: 0.88rem; }
 nav.lankar a { color: var(--dov); text-decoration: none; }
 nav.lankar a:hover { color: var(--text); }
-nav.lankar a[aria-current="page"], .mobilmeny a[aria-current="page"] { color: var(--accent); }
+nav.lankar a[aria-current="page"], .mobilmeny a[aria-current="page"] { color: var(--accent-ljus); }
 
 .burgare {
   display: none; width: 44px; height: 44px; margin-right: -8px;
@@ -94,7 +95,7 @@ nav.lankar a[aria-current="page"], .mobilmeny a[aria-current="page"] { color: va
   border-bottom: 1px solid var(--linje);
 }
 .mobilmeny a:last-child { border-bottom: none; }
-.mobilmeny a:active { color: var(--accent); }
+.mobilmeny a:active { color: var(--accent-ljus); }
 
 @media (max-width: 720px) {
   nav.lankar { display: none; }
@@ -129,7 +130,7 @@ h1 em { font-style: normal; color: var(--accent); }
   background: var(--accent); color: #14100A; border: 1px solid var(--accent);
   transition: transform 0.15s ease, background 0.15s ease;
 }
-.knapp:hover { background: #F7B95E; transform: translateY(-1px); }
+.knapp:hover { background: var(--accent-ljus); border-color: var(--accent-ljus); transform: translateY(-1px); }
 .knapp.tunn { background: transparent; color: var(--text); border-color: var(--linje); }
 .knapp.tunn:hover { border-color: var(--dov); background: var(--yta); }
 .bevisrad {
@@ -141,7 +142,7 @@ h1 em { font-style: normal; color: var(--accent); }
 
 /* ------- sektioner ------- */
 section.block { padding: 84px 0; border-top: 1px solid var(--linje); }
-.blockoga { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+.blockoga { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent-ljus); margin-bottom: 14px; }
 h2 {
   font-size: clamp(1.7rem, 3.6vw, 2.5rem); font-weight: 800; letter-spacing: -0.015em;
   margin: 0 0 18px; max-width: 24ch; text-wrap: balance;
@@ -154,7 +155,7 @@ h2 {
   padding: 30px 28px; display: flex; flex-direction: column;
 }
 .ben article.forst { border-color: var(--accent-djup); }
-.ben .etikett { font-size: 0.68rem; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px; }
+.ben .etikett { font-size: 0.68rem; color: var(--accent-ljus); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px; }
 .ben h3 { font-size: 1.55rem; font-weight: 850; letter-spacing: 0.01em; margin: 0 0 10px; }
 .ben h3::after { content: "."; color: var(--accent); }
 .ben p { margin: 0 0 16px; color: var(--dov); font-size: 0.95rem; }
@@ -181,7 +182,7 @@ h2 {
 .produkter .namn::after { content: "↗"; color: var(--accent); font-size: 0.9rem; }
 .produkter .kort.stilla .namn::after { content: ""; }
 .produkter p { margin: 0; color: var(--dov); font-size: 0.92rem; flex: 1; }
-.produkter .stat { font-size: 0.68rem; color: var(--accent); letter-spacing: 0.04em; }
+.produkter .stat { font-size: 0.68rem; color: var(--accent-ljus); letter-spacing: 0.04em; }
 
 .steg { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 28px; counter-reset: s; }
 .steg div { counter-increment: s; border-top: 2px solid var(--accent); padding-top: 16px; }
@@ -213,7 +214,7 @@ footer.fot a:hover { color: var(--text); }
 
 /* ------- agents ------- */
 h1.lang { font-size: clamp(2.3rem, 6.2vw, 4.3rem); max-width: 17ch; }
-.kedja { font-size: 0.74rem; color: var(--accent); letter-spacing: 0.04em; margin: 26px 0 0; }
+.kedja { font-size: 0.74rem; color: var(--accent-ljus); letter-spacing: 0.04em; margin: 26px 0 0; }
 
 .tva { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 44px; max-width: 940px; }
 .tva p { margin: 0; color: var(--dov); }
@@ -235,11 +236,11 @@ h1.lang { font-size: clamp(2.3rem, 6.2vw, 4.3rem); max-width: 17ch; }
 .agenter article.egen { background: transparent; border-style: dashed; }
 .agenter h3 { margin: 0; font-size: 1.12rem; font-weight: 800; }
 .agenter p { margin: 0; color: var(--dov); font-size: 0.93rem; flex: 1; }
-.agenter .stat { font-size: 0.68rem; color: var(--accent); letter-spacing: 0.04em; }
+.agenter .stat { font-size: 0.68rem; color: var(--accent-ljus); letter-spacing: 0.04em; }
 .agenter .egen a { color: var(--text); font-weight: 700; text-underline-offset: 3px; text-decoration-color: var(--accent-djup); }
 .markor {
   align-self: flex-start; font-size: 0.64rem; letter-spacing: 0.08em; text-transform: uppercase;
-  background: var(--accent); color: #14100A; padding: 4px 9px; border-radius: 4px; font-weight: 600;
+  background: var(--accent-ljus); color: #14100A; padding: 4px 9px; border-radius: 4px; font-weight: 600;
 }
 
 .chips { list-style: none; padding: 0; margin: 0 0 34px; display: flex; flex-wrap: wrap; gap: 10px; }
