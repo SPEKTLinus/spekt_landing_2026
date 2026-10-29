@@ -97,6 +97,8 @@ nav.lankar a[aria-current="page"], .mobilmeny a[aria-current="page"] { color: va
 .mobilmeny a:last-child { border-bottom: none; }
 .mobilmeny a:active { color: var(--accent-ljus); }
 
+/* sex menyval på spekt.se – tätare mellan 721 och 960 px innan hamburgaren tar över */
+@media (max-width: 960px) { nav.lankar { gap: 16px; } }
 @media (max-width: 720px) {
   nav.lankar { display: none; }
   .burgare { display: flex; }

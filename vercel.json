@@ -26,5 +26,12 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/agents{/}?",
+      "destination": "https://outreach.spekt.se/",
+      "permanent": false
+    }
   ]
 }
