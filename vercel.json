@@ -36,12 +36,12 @@
   ],
   "rewrites": [
     {
-      "source": "/admin",
-      "destination": "https://bprice-outreach.vercel.app/admin"
+      "source": "/outreach",
+      "destination": "https://bprice-outreach.vercel.app/outreach"
     },
     {
-      "source": "/admin/:path*",
-      "destination": "https://bprice-outreach.vercel.app/admin/:path*"
+      "source": "/outreach/:path*",
+      "destination": "https://bprice-outreach.vercel.app/outreach/:path*"
     }
   ]
 }
