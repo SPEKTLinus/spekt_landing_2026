@@ -33,5 +33,15 @@
       "destination": "https://outreach.spekt.se/",
       "permanent": false
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/admin",
+      "destination": "https://bprice-outreach.vercel.app/admin"
+    },
+    {
+      "source": "/admin/:path*",
+      "destination": "https://bprice-outreach.vercel.app/admin/:path*"
+    }
   ]
 }
