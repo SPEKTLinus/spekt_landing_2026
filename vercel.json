@@ -40,6 +40,10 @@
       "destination": "https://bprice-outreach.vercel.app/outreach"
     },
     {
+      "source": "/outreach/",
+      "destination": "https://bprice-outreach.vercel.app/outreach"
+    },
+    {
       "source": "/outreach/:path*",
       "destination": "https://bprice-outreach.vercel.app/outreach/:path*"
     }
