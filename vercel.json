@@ -32,20 +32,21 @@
       "source": "/agents{/}?",
       "destination": "https://outreach.spekt.se/",
       "permanent": false
-    }
-  ],
-  "rewrites": [
+    },
     {
       "source": "/outreach",
-      "destination": "https://bprice-outreach.vercel.app/outreach"
+      "destination": "https://app.spekt.se/",
+      "permanent": false
     },
     {
       "source": "/outreach/",
-      "destination": "https://bprice-outreach.vercel.app/outreach"
+      "destination": "https://app.spekt.se/",
+      "permanent": false
     },
     {
       "source": "/outreach/:path*",
-      "destination": "https://bprice-outreach.vercel.app/outreach/:path*"
+      "destination": "https://app.spekt.se/:path*",
+      "permanent": false
     }
   ]
 }
