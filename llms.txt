@@ -1,6 +1,6 @@
 # SPEKT
 
-> SPEKT AB hjälper svenska företag från första kontakt till klar affär. Fem tjänster från samma bolag: Företagsdata (hitta bolagen), Outreach (få mötena), Spaceview (visa lokalen i 3D), hemsidor (ta emot kunden) samt system och appar (gör jobbet bakom). Säljare i grunden med femton år i sälj och affär, AI som verktyg. Löttorp på Öland, kunder i hela Sverige. Org.nr 559249-6847.
+> SPEKT AB är en byrå med fem fristående tjänster för svenska företag: Företagsdata (företagslistor att sälja på), Outreach (bokade B2B-möten åt säljteam), Spaceview (3D-skanning av lokaler), hemsidor samt system och appar. Kunden väljer det den behöver; varje tjänst fungerar för sig. Säljare i grunden med femton år i sälj och affär, AI som verktyg. Löttorp på Öland, kunder i hela Sverige. Org.nr 559249-6847.
 
 ## Det här gör vi
 
@@ -36,7 +36,7 @@ Spaceview, Outreach och Företagsdata har egna priser och villkor på respektive
 ## Mer från SPEKT
 
 - [Spaceview](https://www.spaceview.se/) — lokaler i 3D, skanning och konferensförsäljning. Sammanfattning för AI-tjänster: https://www.spaceview.se/llms.txt
-- [Outreach](https://outreach.spekt.se/) — kvalificerade B2B-möten varje månad. Sammanfattning för AI-tjänster: https://outreach.spekt.se/llms.txt
+- [Outreach](https://outreach.spekt.se/) — kvalificerade B2B-möten varje vecka. Sammanfattning för AI-tjänster: https://outreach.spekt.se/llms.txt
 - [AI-boxen](https://aiboxen.spekt.se/) — egen server med AI-agenter, system ni äger. Sammanfattning för AI-tjänster: https://aiboxen.spekt.se/llms.txt
 - [Företagsdata](https://foretagsdata.spekt.se/) — Sveriges företagsregister som egen app. Sammanfattning för AI-tjänster: https://foretagsdata.spekt.se/llms.txt
 - [PinSetter](https://pinsetter.se/) — röststyrd golfscoring för iPhone och Apple Watch.
