@@ -143,7 +143,7 @@ h1 em { font-style: normal; color: var(--accent); }
 .bevisrad span b { display: block; color: var(--text); font-size: 1.05rem; font-weight: 600; margin-bottom: 2px; }
 
 /* ------- hero med tjänstelistan (startsidan) ------- */
-.hero.bakom h1 { font-size: clamp(2.4rem, 6.4vw, 4.6rem); max-width: 18ch; }
+.hero.bred h1 { font-size: clamp(2.4rem, 6.4vw, 4.6rem); max-width: 18ch; }
 .hero-rad { display: grid; grid-template-columns: 1.1fr 1fr; gap: 56px; align-items: start; }
 .hero-rad .ingress { margin-bottom: 18px; }
 .hero-rad .lugn { color: var(--dov); max-width: 52ch; margin: 0 0 14px; }
@@ -161,10 +161,26 @@ h1 em { font-style: normal; color: var(--accent); }
   width: 22px; height: 22px; flex: none;
   fill: none; stroke: var(--accent-ljus); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round;
 }
+.tjanster small { display: block; font-size: 0.78rem; font-weight: 400; color: var(--dov); margin-top: 1px; }
 .tjanster .forst a { background: var(--accent); border-color: var(--accent); color: #14100A; font-weight: 700; }
 .tjanster .forst a::after, .tjanster .forst svg { color: #14100A; stroke: #14100A; }
 .tjanster .forst a:hover { background: var(--accent-ljus); border-color: var(--accent-ljus); }
 @media (max-width: 860px) { .hero-rad { grid-template-columns: 1fr; gap: 40px; } }
+
+/* ------- en tjänst per sektion: text till vänster, faktaruta till höger ------- */
+.tjanst { display: grid; grid-template-columns: 1.35fr 1fr; gap: 56px; align-items: center; }
+.tjanst .blockingress { margin-bottom: 18px; }
+.tjanst .cta-rad { margin-top: 30px; }
+.fakta {
+  list-style: none; margin: 0; padding: 8px 26px; display: grid;
+  background: var(--yta); border: 1px solid var(--linje); border-radius: 10px;
+  font-size: 0.74rem; color: var(--dov); letter-spacing: 0.02em;
+}
+.fakta li { padding: 16px 0; border-bottom: 1px solid var(--linje); }
+.fakta li:last-child { border-bottom: none; }
+.fakta b { display: block; color: var(--text); font-size: 1.05rem; font-weight: 600; margin-bottom: 2px; letter-spacing: 0; }
+.fakta li.not { font-size: 0.66rem; padding: 12px 0; }
+@media (max-width: 860px) { .tjanst { grid-template-columns: 1fr; gap: 34px; } }
 @media (prefers-reduced-motion: reduce) { .tjanster a { transition: none; } }
 
 /* ------- sektioner ------- */
