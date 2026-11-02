@@ -142,7 +142,33 @@ h1 em { font-style: normal; color: var(--accent); }
 }
 .bevisrad span b { display: block; color: var(--text); font-size: 1.05rem; font-weight: 600; margin-bottom: 2px; }
 
+/* ------- hero med tjänstelistan (startsidan) ------- */
+.hero.bakom h1 { font-size: clamp(2.4rem, 6.4vw, 4.6rem); max-width: 18ch; }
+.hero-rad { display: grid; grid-template-columns: 1.1fr 1fr; gap: 56px; align-items: start; }
+.hero-rad .ingress { margin-bottom: 18px; }
+.hero-rad .lugn { color: var(--dov); max-width: 52ch; margin: 0 0 14px; }
+.hero-rad .cta-rad { margin-top: 30px; }
+.tjanster { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.tjanster a {
+  display: flex; align-items: center; gap: 16px; min-height: 60px; padding: 16px 22px;
+  background: var(--yta); border: 1px solid var(--linje); border-radius: 10px;
+  text-decoration: none; font-size: 1.12rem; font-weight: 600;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.tjanster a::after { content: "→"; content: "→" / ""; margin-left: auto; color: var(--dov); }
+.tjanster a:hover { border-color: var(--accent-djup); background: var(--yta-ljus); }
+.tjanster svg {
+  width: 22px; height: 22px; flex: none;
+  fill: none; stroke: var(--accent-ljus); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round;
+}
+.tjanster .forst a { background: var(--accent); border-color: var(--accent); color: #14100A; font-weight: 700; }
+.tjanster .forst a::after, .tjanster .forst svg { color: #14100A; stroke: #14100A; }
+.tjanster .forst a:hover { background: var(--accent-ljus); border-color: var(--accent-ljus); }
+@media (max-width: 860px) { .hero-rad { grid-template-columns: 1fr; gap: 40px; } }
+@media (prefers-reduced-motion: reduce) { .tjanster a { transition: none; } }
+
 /* ------- sektioner ------- */
+[id] { scroll-margin-top: calc(var(--topp-h) + 16px); }
 section.block { padding: 84px 0; border-top: 1px solid var(--linje); }
 .blockoga { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent-ljus); margin-bottom: 14px; }
 h2 {
@@ -164,13 +190,18 @@ h2 {
 .ben ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; font-size: 0.93rem; }
 .ben li { padding-left: 20px; position: relative; }
 .ben li::before { content: "→"; position: absolute; left: 0; color: var(--accent); }
+.ben.lika { grid-template-columns: 1fr 1fr; }
+.ben .pris { font-size: 0.68rem; color: var(--accent-ljus); letter-spacing: 0.04em; margin: 18px 0 0; }
+.ben .vidare { margin: auto 0 0; padding-top: 18px; font-weight: 700; font-size: 0.95rem; }
+.ben a { color: var(--text); text-underline-offset: 3px; text-decoration-color: var(--accent-djup); }
+.efter { margin-top: 34px; }
 .sidorad {
   margin-top: 18px; padding: 18px 22px; border: 1px dashed var(--linje); border-radius: 10px;
   color: var(--dov); font-size: 0.92rem;
 }
 .sidorad strong { color: var(--text); }
 .sidorad a { color: var(--text); text-underline-offset: 3px; text-decoration-color: var(--accent-djup); }
-@media (max-width: 760px) { .ben { grid-template-columns: 1fr; } }
+@media (max-width: 760px) { .ben, .ben.lika { grid-template-columns: 1fr; } }
 
 .produkter { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
 .produkter .kort {

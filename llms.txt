@@ -1,34 +1,30 @@
 # SPEKT
 
-> SPEKT AB bygger system, appar, interna verktyg och hemsidor för svenska små och medelstora företag. Fast pris per leverans, kunden äger koden och datan, och det är klart på veckor — inte kvartal. Vi finns i Löttorp på Öland och arbetar digitalt med kunder i hela Sverige.
+> SPEKT AB är bolaget bakom Spaceview, 3D-visning av lokaler. SPEKT bygger också system, appar och hemsidor åt små och medelstora företag i Sverige, bokar kvalificerade B2B-möten åt säljteam och säljer Företagsdata. Vi finns i Löttorp på Öland och arbetar med kunder i hela Sverige. Org.nr 559249-6847.
 
-## Erbjudande
+## Det här gör vi
 
-- **System & appar (huvudspår)**: interna verktyg, kundsystem och appar byggda för hur just kunden arbetar. Vi börjar med det som kostar mest tid i dag och levererar det först. Interna verktyg, CRM och säljstöd; kundportaler, bokning och offertflöden; appar för iPhone, Apple Watch och webb; integrationer mot det kunden redan har.
-- **Hemsidor**: en sajt som laddar snabbt, är byggd för mobilen och leder besökaren till ett tydligt nästa steg. Grundläggande SEO och tillgänglighet från start, kopplad till kundens system när det behövs.
-- **Outreach**: vi bokar kvalificerade möten med rätt personer hos rätt bolag åt företags säljteam. https://outreach.spekt.se/
-- **AI-boxen**: en egen server där AI-agenter tar fram företagets interna verktyg. SPEKT är återförsäljare och partner till Self Production, som utvecklar boxen. https://aiboxen.spekt.se/
-- **Företagsdata**: Sveriges företag som en fil du äger, för prospektering och säljlistor. Sökbar offline, obegränsad export. Köp en gång, ingen prenumeration. https://foretagsdata.spekt.se/
-- **Spaceview**: lokaler i 3D. Vi 3D-skannar mötesrum, konferensanläggningar, butiker och mässhallar så att kunden kan gå runt i lokalen från sin skärm. https://www.spaceview.se/
+1. **3D-visning – Spaceview**: vi 3D-skannar mötesrum, konferensanläggningar, kontorshotell, butiker och mässhallar med Matterport, så att kunden kan gå runt i lokalen från sin skärm. Ett mötesrum tar ungefär en timme att skanna, en hel anläggning en förmiddag. Inom en vecka efter skanningen får kunden en länk och en kod för inbäddning. Abonnemanget börjar på 3 900 kr per år (hosting och administration); skanningen prissätts efter lokalens storlek och omfattning. Priser exklusive moms. Konferensförsäljning för konferensanläggningar och hotell: varje lead får ett guidat turmöte i 3D. 100+ skannade lokaler; kundcase Växthuset (elva anläggningar). https://www.spaceview.se/
+2. **System och appar**: interna verktyg, kundsystem och appar byggda för hur just kunden arbetar. Interna verktyg, CRM och säljstöd; kundportaler, bokning och offertflöden; appar för iPhone, Apple Watch och webb; integrationer mot det kunden redan har. Fast pris per leverans, kunden äger koden och datan.
+3. **Hemsidor**: en sajt som laddar snabbt, är byggd för mobilen och leder besökaren till ett tydligt nästa steg. Grundläggande SEO och tillgänglighet från start, kopplad till kundens system när det behövs. Fast pris per leverans, domänen är kundens.
+4. **Outreach och mötesbokning**: vi bokar kvalificerade möten med rätt personer hos rätt bolag åt B2B-säljteam. 5 möten i månaden för 7 500 kr eller 7 möten för 10 000 kr per månad, uppstart 10 000 kr en gång, exklusive moms. Ingen bindningstid. https://outreach.spekt.se/
+5. **Företagsdata**: Sveriges företagsregister, nära 1,5 miljoner företag, i en app för Mac och Windows, sökbar offline. Data från Bolagsverket och SCB med en ny version varje månad. 5 000 kr exklusive moms som engångsköp; uppdateringar frivilligt 2 000 kr per år. Gratis prov i 7 dagar. https://foretagsdata.spekt.se/
 
-## Upplägg
+Även **AI-boxen**: en egen server där AI-agenter tar fram företagets interna verktyg. Self Production utvecklar boxen; SPEKT är återförsäljare och partner. https://aiboxen.spekt.se/
 
-- Fast pris per leverans — kunden vet kostnaden innan vi börjar.
-- Veckor från idé till drift; kunden testar riktiga versioner inom veckor, inte en förstudie.
-- Kunden äger koden, datan och domänen. Ingen inlåsning, inga licenser.
-- 15+ år i sälj och affär. Kunden pratar direkt med oss som bygger, hela vägen.
-
-## Så jobbar vi
+## Upplägg för system, appar och hemsidor
 
 1. Samtal: vi hittar det som ger mest värde att lösa och spikar en tydlig första leverans.
 2. Leverans: fast pris, kort ledtid. Riktiga versioner inom veckor.
 3. Äg resultatet: koden, datan och domänen är kundens.
 
+Spaceview, Outreach och Företagsdata har egna priser och villkor på respektive sajt.
+
 ## Byggt av SPEKT
 
-- **Business hub & CRM**: internt säljsystem med prospekthantering, samtalsanteckningar, flöden och egen företagsdata i ett. Motorn bakom vår egen försäljning.
-- [PinSetter](https://pinsetter.se): röststyrd golfscoring för iPhone och Apple Watch med AI-analys, backend, tränarwebb och en separat app för greenkeepers. iOS, watchOS, tvOS och webb.
-- [Företagsdata](https://foretagsdata.spekt.se): alla Sveriges företag som en fil du äger. Sökbar offline, obegränsad export.
+- **Business hub & CRM**: internt säljsystem med prospekthantering, samtalsanteckningar, flöden och egen företagsdata i ett.
+- [PinSetter](https://pinsetter.se): röststyrd golfapp för iPhone och Apple Watch, plus PinSetter GK för banpersonal. I privat beta.
+- [Företagsdata](https://foretagsdata.spekt.se): appen ovan, för macOS och Windows.
 
 ## Kontakt
 
