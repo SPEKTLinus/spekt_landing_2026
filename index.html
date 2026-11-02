@@ -16,6 +16,11 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="SPEKT – Behovsanpassade lösningar">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SPEKT — System, appar och hemsidor för svenska SME">
+  <meta name="twitter:description" content="Interna verktyg, appar och hemsidor till fast pris per leverans. Du äger koden. Veckor, inte kvartal.">
+  <meta name="twitter:image" content="https://spekt.se/delningsbild.png">
+  <meta name="twitter:image:alt" content="SPEKT – Behovsanpassade lösningar">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
   <meta name="theme-color" content="#0E1116">
   <link rel="canonical" href="https://spekt.se/">
   <link rel="icon" href="/favicon.ico" sizes="48x48">
@@ -25,15 +30,122 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "SPEKT AB",
-    "url": "https://spekt.se/",
-    "logo": "https://spekt.se/logga-512.png",
-    "email": "linus@spekt.se",
-    "description": "Systembyggande, appar, interna verktyg och hemsidor för svenska små och medelstora företag.",
-    "areaServed": "SE",
-    "address": { "@type": "PostalAddress", "addressLocality": "Löttorp", "addressRegion": "Öland", "addressCountry": "SE" },
-    "knowsAbout": ["Systemutveckling", "Apputveckling", "Interna verktyg", "CRM", "Hemsidor", "iOS"]
+    "@graph": [
+      {
+        "@type": ["Organization", "ProfessionalService"],
+        "@id": "https://spekt.se/#organisation",
+        "name": "SPEKT AB",
+        "alternateName": "SPEKT",
+        "url": "https://spekt.se/",
+        "logo": { "@type": "ImageObject", "url": "https://spekt.se/logga-512.png", "width": 512, "height": 512 },
+        "image": "https://spekt.se/delningsbild.png",
+        "email": "linus@spekt.se",
+        "description": "Systembyggande, appar, interna verktyg och hemsidor för svenska små och medelstora företag. Fast pris per leverans, kunden äger koden och datan.",
+        "slogan": "Behovsanpassade lösningar",
+        "areaServed": { "@type": "Country", "name": "Sverige" },
+        "address": { "@type": "PostalAddress", "addressLocality": "Löttorp", "addressRegion": "Öland", "addressCountry": "SE" },
+        "knowsAbout": ["Systemutveckling", "Apputveckling", "Interna verktyg", "CRM", "Hemsidor", "iOS", "Outreach", "B2B-mötesbokning", "Företagsdata", "3D-skanning"],
+        "knowsLanguage": "sv",
+        "contactPoint": { "@type": "ContactPoint", "contactType": "sales", "email": "linus@spekt.se", "availableLanguage": "sv" },
+        "sameAs": [
+          "https://www.spaceview.se/",
+          "https://outreach.spekt.se/",
+          "https://aiboxen.spekt.se/",
+          "https://foretagsdata.spekt.se/",
+          "https://pinsetter.se/"
+        ],
+        "brand": [
+          { "@type": "Brand", "name": "Spaceview", "url": "https://www.spaceview.se/" },
+          { "@type": "Brand", "name": "Företagsdata", "url": "https://foretagsdata.spekt.se/" },
+          { "@type": "Brand", "name": "PinSetter", "url": "https://pinsetter.se/" }
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://spekt.se/#webbplats",
+        "url": "https://spekt.se/",
+        "name": "SPEKT",
+        "description": "SPEKT bygger system, appar, interna verktyg och hemsidor för svenska små och medelstora företag.",
+        "inLanguage": "sv-SE",
+        "publisher": { "@id": "https://spekt.se/#organisation" }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://spekt.se/#sida",
+        "url": "https://spekt.se/",
+        "name": "SPEKT — System, appar och hemsidor för svenska SME",
+        "description": "SPEKT bygger system, appar, interna verktyg och hemsidor för svenska små och medelstora företag. Fast pris per leverans, du äger resultatet, klart på veckor.",
+        "inLanguage": "sv-SE",
+        "isPartOf": { "@id": "https://spekt.se/#webbplats" },
+        "about": { "@id": "https://spekt.se/#organisation" },
+        "primaryImageOfPage": "https://spekt.se/delningsbild.png",
+        "dateModified": "2026-11-02"
+      },
+      {
+        "@type": "Service",
+        "@id": "https://spekt.se/#system-och-appar",
+        "name": "System & appar",
+        "serviceType": "Systemutveckling och apputveckling",
+        "description": "Interna verktyg, kundsystem och appar byggda för hur just ni arbetar: CRM och säljstöd, kundportaler, bokning och offertflöden, appar för iPhone, Apple Watch och webb samt integrationer mot det ni redan har. Fast pris per leverans, kunden äger koden och datan.",
+        "url": "https://spekt.se/#erbjudande",
+        "provider": { "@id": "https://spekt.se/#organisation" },
+        "areaServed": { "@type": "Country", "name": "Sverige" },
+        "availableLanguage": "sv"
+      },
+      {
+        "@type": "Service",
+        "@id": "https://spekt.se/#hemsidor",
+        "name": "Hemsidor",
+        "serviceType": "Webbutveckling",
+        "description": "En sajt som laddar snabbt, är byggd för mobilen och leder besökaren till ett tydligt nästa steg. Grundläggande SEO och tillgänglighet från start, kopplad till era system när det behövs.",
+        "url": "https://spekt.se/#erbjudande",
+        "provider": { "@id": "https://spekt.se/#organisation" },
+        "areaServed": { "@type": "Country", "name": "Sverige" },
+        "availableLanguage": "sv"
+      },
+      {
+        "@type": "Service",
+        "@id": "https://spekt.se/#outreach",
+        "name": "Outreach — kvalificerade B2B-möten",
+        "serviceType": "Mötesbokning för B2B-säljteam",
+        "description": "Vi bokar kvalificerade möten med rätt personer hos rätt bolag åt ert säljteam.",
+        "url": "https://outreach.spekt.se/",
+        "provider": { "@id": "https://spekt.se/#organisation" },
+        "areaServed": { "@type": "Country", "name": "Sverige" },
+        "availableLanguage": "sv"
+      },
+      {
+        "@type": "Service",
+        "@id": "https://spekt.se/#spaceview",
+        "name": "Spaceview — lokaler i 3D",
+        "serviceType": "3D-skanning av lokaler",
+        "description": "Spaceview 3D-skannar mötesrum, konferensanläggningar, butiker och mässhallar så att kunden kan gå runt i lokalen från sin skärm.",
+        "url": "https://www.spaceview.se/",
+        "provider": { "@id": "https://spekt.se/#organisation" },
+        "areaServed": { "@type": "Country", "name": "Sverige" },
+        "availableLanguage": "sv"
+      },
+      {
+        "@type": "Product",
+        "@id": "https://spekt.se/#foretagsdata",
+        "name": "Företagsdata",
+        "description": "Alla Sveriges företag som en fil du äger. Sökbar offline, obegränsad export. Köp en gång — ingen prenumeration.",
+        "url": "https://foretagsdata.spekt.se/",
+        "category": "Programvara",
+        "brand": { "@type": "Brand", "name": "SPEKT" },
+        "manufacturer": { "@id": "https://spekt.se/#organisation" }
+      },
+      {
+        "@type": "Product",
+        "@id": "https://spekt.se/#aiboxen",
+        "name": "AI-boxen",
+        "description": "En egen server där AI-agenter tar fram era interna verktyg. SPEKT är återförsäljare och partner till Self Production, som utvecklar boxen.",
+        "url": "https://aiboxen.spekt.se/",
+        "category": "Server med AI-agenter",
+        "brand": { "@type": "Brand", "name": "Self Production" },
+        "manufacturer": { "@type": "Organization", "name": "Self Production", "url": "https://selfproduction.se/" }
+      }
+    ]
   }
   </script>
   <script>document.documentElement.classList.add("js")</script>
@@ -128,6 +240,8 @@
     verktyg. Vi är återförsäljare och partner till Self Production, som utvecklar boxen. <a href="https://aiboxen.spekt.se">Läs mer på aiboxen.spekt.se</a></p>
     <p class="sidorad in"><strong>Företagsdata:</strong> Sveriges företag som en fil du äger, för prospektering
     och säljlistor. Köp en gång, ingen prenumeration. <a href="https://foretagsdata.spekt.se">Läs mer på foretagsdata.spekt.se</a></p>
+    <p class="sidorad in"><strong>Spaceview:</strong> lokaler i 3D. Vi 3D-skannar mötesrum, konferensanläggningar, butiker
+    och mässhallar så att kunden kan gå runt i lokalen från sin skärm. <a href="https://www.spaceview.se">Läs mer på spaceview.se</a></p>
   </div>
 </section>
 
@@ -210,6 +324,15 @@
       <a href="https://aiboxen.spekt.se/">AI-Boxen</a>
       <a href="https://pinsetter.se">PinSetter</a>
       <a href="mailto:linus@spekt.se">linus@spekt.se</a>
+    </nav>
+  </div>
+  <div class="yta" style="width:100%">
+    <div style="margin-bottom:8px">Mer från SPEKT</div>
+    <nav aria-label="Mer från SPEKT" style="flex-direction:column;gap:6px">
+      <span><a href="https://www.spaceview.se/" rel="noopener">Spaceview</a> — lokaler i 3D: 3D-skanning av mötesrum och konferensanläggningar, konferensförsäljning</span>
+      <span><a href="https://outreach.spekt.se/" rel="noopener">Outreach</a> — vi bokar kvalificerade möten åt B2B-säljteam</span>
+      <span><a href="https://aiboxen.spekt.se/" rel="noopener">AI-boxen</a> — egen server med AI-agenter; SPEKT är återförsäljare</span>
+      <span><a href="https://foretagsdata.spekt.se/" rel="noopener">Företagsdata</a> — Sveriges företagsregister som en app du äger</span>
     </nav>
   </div>
 </footer>

@@ -1,0 +1,51 @@
+# SPEKT
+
+> SPEKT AB bygger system, appar, interna verktyg och hemsidor för svenska små och medelstora företag. Fast pris per leverans, kunden äger koden och datan, och det är klart på veckor — inte kvartal. Vi finns i Löttorp på Öland och arbetar digitalt med kunder i hela Sverige.
+
+## Erbjudande
+
+- **System & appar (huvudspår)**: interna verktyg, kundsystem och appar byggda för hur just kunden arbetar. Vi börjar med det som kostar mest tid i dag och levererar det först. Interna verktyg, CRM och säljstöd; kundportaler, bokning och offertflöden; appar för iPhone, Apple Watch och webb; integrationer mot det kunden redan har.
+- **Hemsidor**: en sajt som laddar snabbt, är byggd för mobilen och leder besökaren till ett tydligt nästa steg. Grundläggande SEO och tillgänglighet från start, kopplad till kundens system när det behövs.
+- **Outreach**: vi bokar kvalificerade möten med rätt personer hos rätt bolag åt företags säljteam. https://outreach.spekt.se/
+- **AI-boxen**: en egen server där AI-agenter tar fram företagets interna verktyg. SPEKT är återförsäljare och partner till Self Production, som utvecklar boxen. https://aiboxen.spekt.se/
+- **Företagsdata**: Sveriges företag som en fil du äger, för prospektering och säljlistor. Sökbar offline, obegränsad export. Köp en gång, ingen prenumeration. https://foretagsdata.spekt.se/
+- **Spaceview**: lokaler i 3D. Vi 3D-skannar mötesrum, konferensanläggningar, butiker och mässhallar så att kunden kan gå runt i lokalen från sin skärm. https://www.spaceview.se/
+
+## Upplägg
+
+- Fast pris per leverans — kunden vet kostnaden innan vi börjar.
+- Veckor från idé till drift; kunden testar riktiga versioner inom veckor, inte en förstudie.
+- Kunden äger koden, datan och domänen. Ingen inlåsning, inga licenser.
+- 15+ år i sälj och affär. Kunden pratar direkt med oss som bygger, hela vägen.
+
+## Så jobbar vi
+
+1. Samtal: vi hittar det som ger mest värde att lösa och spikar en tydlig första leverans.
+2. Leverans: fast pris, kort ledtid. Riktiga versioner inom veckor.
+3. Äg resultatet: koden, datan och domänen är kundens.
+
+## Byggt av SPEKT
+
+- **Business hub & CRM**: internt säljsystem med prospekthantering, samtalsanteckningar, flöden och egen företagsdata i ett. Motorn bakom vår egen försäljning.
+- [PinSetter](https://pinsetter.se): röststyrd golfscoring för iPhone och Apple Watch med AI-analys, backend, tränarwebb och en separat app för greenkeepers. iOS, watchOS, tvOS och webb.
+- [Företagsdata](https://foretagsdata.spekt.se): alla Sveriges företag som en fil du äger. Sökbar offline, obegränsad export.
+
+## Kontakt
+
+- Boka 30 minuter digitalt möte: linus@spekt.se
+- Webbplats: https://spekt.se/
+- SPEKT AB, Löttorp, Öland, Sverige. Svar inom en arbetsdag.
+- Samarbetspartner: WeSales, https://wesales.se
+
+## Mer från SPEKT
+
+- [Spaceview](https://www.spaceview.se/) — lokaler i 3D, skanning och konferensförsäljning. Sammanfattning för AI-tjänster: https://www.spaceview.se/llms.txt
+- [Outreach](https://outreach.spekt.se/) — kvalificerade B2B-möten varje månad. Sammanfattning för AI-tjänster: https://outreach.spekt.se/llms.txt
+- [AI-boxen](https://aiboxen.spekt.se/) — egen server med AI-agenter, system ni äger. Sammanfattning för AI-tjänster: https://aiboxen.spekt.se/llms.txt
+- [Företagsdata](https://foretagsdata.spekt.se/) — Sveriges företagsregister som egen app.
+- [PinSetter](https://pinsetter.se/) — röststyrd golfscoring för iPhone och Apple Watch.
+
+## Optional
+
+- [Sitemap](https://spekt.se/sitemap.xml)
+- [robots.txt](https://spekt.se/robots.txt)
