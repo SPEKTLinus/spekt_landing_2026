@@ -42,7 +42,7 @@
 - [Spaceview](https://www.spaceview.se/) — lokaler i 3D, skanning och konferensförsäljning. Sammanfattning för AI-tjänster: https://www.spaceview.se/llms.txt
 - [Outreach](https://outreach.spekt.se/) — kvalificerade B2B-möten varje månad. Sammanfattning för AI-tjänster: https://outreach.spekt.se/llms.txt
 - [AI-boxen](https://aiboxen.spekt.se/) — egen server med AI-agenter, system ni äger. Sammanfattning för AI-tjänster: https://aiboxen.spekt.se/llms.txt
-- [Företagsdata](https://foretagsdata.spekt.se/) — Sveriges företagsregister som egen app.
+- [Företagsdata](https://foretagsdata.spekt.se/) — Sveriges företagsregister som egen app. Sammanfattning för AI-tjänster: https://foretagsdata.spekt.se/llms.txt
 - [PinSetter](https://pinsetter.se/) — röststyrd golfscoring för iPhone och Apple Watch.
 
 ## Optional
