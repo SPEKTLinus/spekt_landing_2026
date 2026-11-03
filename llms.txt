@@ -1,6 +1,6 @@
 # Spekt
 
-> Spekt AB är en byrå med fem fristående tjänster för svenska företag: Företagsdata (företagslistor att sälja på), Outreach (bokade B2B-möten åt säljteam), Spaceview (3D-skanning av lokaler), hemsidor samt system och appar. Kunden väljer det den behöver; varje tjänst fungerar för sig. Säljare i grunden med femton år i sälj och affär, AI som verktyg. Löttorp på Öland, kunder i hela Sverige. Org.nr 559249-6847.
+> Spekt AB är en byrå med sex fristående tjänster för svenska företag: Företagsdata (företagslistor att sälja på), Outreach (bokade B2B-möten åt säljteam), Spaceview (3D-skanning av lokaler), hemsidor, system och appar samt utbildning i AI, webb och försäljning. Kunden väljer det den behöver; varje tjänst fungerar för sig. Säljare i grunden med femton år i sälj och affär, AI som verktyg. Löttorp på Öland, kunder i hela Sverige. Org.nr 559249-6847.
 
 ## Det här gör vi
 
@@ -9,6 +9,8 @@
 3. **3D-visning – Spaceview**: vi 3D-skannar mötesrum, konferensanläggningar, kontorshotell, butiker och mässhallar med Matterport, så att kunden kan gå runt i lokalen från sin skärm. Leverans inom en vecka efter skanningen, som länk och kod för inbäddning. Abonnemang från 3 900 kr per år exklusive moms; skanningen prissätts efter lokalens storlek. Konferensförsäljning där varje lead får ett guidat turmöte i 3D. 100+ skannade lokaler; kundcase Växthuset (elva anläggningar). https://www.spaceview.se/
 4. **Hemsidor**: sajter som laddar snabbt, fungerar i mobilen och leder besökaren till ett tydligt nästa steg. SEO- och GEO-optimerade från start: GEO (generativ sökmotoroptimering) gör att AI-tjänster som ChatGPT, Claude, Gemini och Perplexity kan läsa, förstå och citera sajten, med strukturerad data, llms.txt, öppet för AI-robotar och fakta i klartext. Tillgängliga och kopplade till kundens system när det behövs. Fast pris per leverans, domänen är kundens.
 5. **System och appar**: interna verktyg, CRM och säljstöd, kundportaler, bokning och appar för iPhone, Apple Watch och webb, byggda för hur just kunden arbetar. Fast pris per leverans, kunden äger koden och datan, riktiga versioner inom veckor.
+
+6. **Utbildning**: kurser för företag, team och privatpersoner i AI (kom igång, i arbetet, för marknadsföring), webbutveckling med AI, försäljning och Office. Workshop, kursserie, personlig handledning eller föreläsning, på plats eller digitalt. Pris efter upplägg. https://education.spekt.se/
 
 Även **AI-boxen**: en egen server där AI-agenter tar fram företagets interna verktyg. Self Production utvecklar boxen; Spekt är återförsäljare och partner. https://aiboxen.spekt.se/
 
