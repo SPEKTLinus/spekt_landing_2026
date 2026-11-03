@@ -1,6 +1,6 @@
-# SPEKT
+# Spekt
 
-> SPEKT AB är en byrå med fem fristående tjänster för svenska företag: Företagsdata (företagslistor att sälja på), Outreach (bokade B2B-möten åt säljteam), Spaceview (3D-skanning av lokaler), hemsidor samt system och appar. Kunden väljer det den behöver; varje tjänst fungerar för sig. Säljare i grunden med femton år i sälj och affär, AI som verktyg. Löttorp på Öland, kunder i hela Sverige. Org.nr 559249-6847.
+> Spekt AB är en byrå med fem fristående tjänster för svenska företag: Företagsdata (företagslistor att sälja på), Outreach (bokade B2B-möten åt säljteam), Spaceview (3D-skanning av lokaler), hemsidor samt system och appar. Kunden väljer det den behöver; varje tjänst fungerar för sig. Säljare i grunden med femton år i sälj och affär, AI som verktyg. Löttorp på Öland, kunder i hela Sverige. Org.nr 559249-6847.
 
 ## Det här gör vi
 
@@ -10,7 +10,7 @@
 4. **Hemsidor**: sajter som laddar snabbt, fungerar i mobilen och leder besökaren till ett tydligt nästa steg. SEO- och GEO-optimerade från start: GEO (generativ sökmotoroptimering) gör att AI-tjänster som ChatGPT, Claude, Gemini och Perplexity kan läsa, förstå och citera sajten, med strukturerad data, llms.txt, öppet för AI-robotar och fakta i klartext. Tillgängliga och kopplade till kundens system när det behövs. Fast pris per leverans, domänen är kundens.
 5. **System och appar**: interna verktyg, CRM och säljstöd, kundportaler, bokning och appar för iPhone, Apple Watch och webb, byggda för hur just kunden arbetar. Fast pris per leverans, kunden äger koden och datan, riktiga versioner inom veckor.
 
-Även **AI-boxen**: en egen server där AI-agenter tar fram företagets interna verktyg. Self Production utvecklar boxen; SPEKT är återförsäljare och partner. https://aiboxen.spekt.se/
+Även **AI-boxen**: en egen server där AI-agenter tar fram företagets interna verktyg. Self Production utvecklar boxen; Spekt är återförsäljare och partner. https://aiboxen.spekt.se/
 
 ## Upplägg för system, appar och hemsidor
 
@@ -20,7 +20,7 @@
 
 Spaceview, Outreach och Företagsdata har egna priser och villkor på respektive sajt.
 
-## Byggt av SPEKT
+## Byggt av Spekt
 
 - **Business hub & CRM**: internt säljsystem med prospekthantering, samtalsanteckningar, flöden och egen företagsdata i ett.
 - [PinSetter](https://pinsetter.se): röststyrd golfapp för iPhone och Apple Watch, plus PinSetter GK för banpersonal. I privat beta.
@@ -30,10 +30,10 @@ Spaceview, Outreach och Företagsdata har egna priser och villkor på respektive
 
 - Boka 30 minuter digitalt möte: linus@spekt.se
 - Webbplats: https://spekt.se/
-- SPEKT AB, Löttorp, Öland, Sverige. Svar inom en arbetsdag.
+- Spekt AB, Löttorp, Öland, Sverige. Svar inom en arbetsdag.
 - Samarbetspartner: WeSales, https://wesales.se
 
-## Mer från SPEKT
+## Mer från Spekt
 
 - [Spaceview](https://www.spaceview.se/) — lokaler i 3D, skanning och konferensförsäljning. Sammanfattning för AI-tjänster: https://www.spaceview.se/llms.txt
 - [Outreach](https://outreach.spekt.se/) — kvalificerade B2B-möten varje vecka. Sammanfattning för AI-tjänster: https://outreach.spekt.se/llms.txt
