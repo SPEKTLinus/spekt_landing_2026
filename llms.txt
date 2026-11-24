@@ -12,8 +12,6 @@
 
 6. **Utbildning**: kurser för företag, team och privatpersoner i AI (kom igång, i arbetet, för marknadsföring), webbutveckling med AI, försäljning och Office. Workshop, kursserie, personlig handledning eller föreläsning, på plats eller digitalt. Pris efter upplägg. https://education.spekt.se/
 
-Även **AI-boxen**: en egen server där AI-agenter tar fram företagets interna verktyg. Self Production utvecklar boxen; Spekt är återförsäljare och partner. https://aiboxen.spekt.se/
-
 ## Upplägg för system, appar och hemsidor
 
 1. Samtal: vi hittar det som ger mest värde att lösa och spikar en tydlig första leverans.
@@ -38,7 +36,6 @@ Spaceview, Outreach och Företagsdata har egna priser och villkor på respektive
 
 - [Spaceview](https://www.spaceview.se/) — lokaler i 3D, skanning och konferensförsäljning. Sammanfattning för AI-tjänster: https://www.spaceview.se/llms.txt
 - [Outreach](https://outreach.spekt.se/) — Prospekteringsmotorn och Mötesmotorn: kvalificerade B2B-möten varje vecka. Sammanfattning för AI-tjänster: https://outreach.spekt.se/llms.txt
-- [AI-boxen](https://aiboxen.spekt.se/) — egen server med AI-agenter, system ni äger. Sammanfattning för AI-tjänster: https://aiboxen.spekt.se/llms.txt
 - [Företagsdata](https://foretagsdata.spekt.se/) — Sveriges företagsregister som egen app. Sammanfattning för AI-tjänster: https://foretagsdata.spekt.se/llms.txt
 - [PinSetter](https://pinsetter.se/) — röststyrd golfscoring för iPhone och Apple Watch.
 
