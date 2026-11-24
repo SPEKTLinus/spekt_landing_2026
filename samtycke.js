@@ -1,10 +1,10 @@
 // Samtycke till besöksstatistik (Linus 2026-11-24). Samma fil på spekt.se, outreach.spekt.se (och aimotorn.se),
 // foretagsdata.spekt.se och education.spekt.se.
 //
-// - Google Analytics laddas först när besökaren har tryckt Godkänn statistik, eller direkt om hon redan har godkänt.
+// - Google Analytics laddas först när besökaren har tryckt Godkänn cookies, eller direkt om besökaren redan har godkänt.
 //   Nej tack laddar ingenting. Valet sparas i localStorage ("spekt-samtycke": "ja" eller "nej") på den här sajten.
 // - Kakorna gäller bara sajten där samtycket gavs (cookie_domain = sajtens eget namn). Inga annonsfunktioner.
-// - En länk med data-samtycke (i sidfoten: Kakor och statistik) öppnar rutan igen. Säger man Nej tack efter att ha
+// - En länk med data-samtycke (i sidfoten: Cookies) öppnar rutan igen. Säger man Nej tack efter att ha
 //   godkänt stängs Google Analytics av, kakorna tas bort och sidan laddas om; med nej sparat rensas de på varje sida.
 // - Mätnings-id: aimotorn.se har ett eget, alla andra sajter samma.
 // - Länken till integritetssidan: data-integritet på script-taggen, annars /integritet.
@@ -96,9 +96,9 @@
     ruta = document.createElement("div");
     ruta.className = "spekt-samtycke";
     ruta.setAttribute("role", "region");
-    ruta.setAttribute("aria-label", "Kakor och statistik");
+    ruta.setAttribute("aria-label", "Cookies");
     var text = document.createElement("p");
-    text.appendChild(document.createTextNode("Får vi mäta besöken med Google Analytics? Det sätter kakor, och vi ser vilka sidor som används. "));
+    text.appendChild(document.createTextNode("Vi använder cookies för besöksstatistik, så att vi ser vilka sidor som används. Är det okej? "));
     var lank = document.createElement("a");
     lank.href = INTEGRITET + "#kakor";
     lank.textContent = "Läs mer";
@@ -107,12 +107,12 @@
     if (v === "ja" || v === "nej") {
       var lage = document.createElement("p");
       lage.className = "spekt-samtycke-lage";
-      lage.textContent = v === "ja" ? "Du har godkänt statistik." : "Du har sagt nej till statistik.";
+      lage.textContent = v === "ja" ? "Du har godkänt cookies." : "Du har sagt nej till cookies.";
       ruta.appendChild(lage);
     }
     var knappar = document.createElement("div");
     knappar.className = "spekt-samtycke-knappar";
-    [["nej", "Nej tack"], ["ja", "Godkänn statistik"]].forEach(function (k) {
+    [["nej", "Nej tack"], ["ja", "Godkänn cookies"]].forEach(function (k) {
       var b = document.createElement("button");
       b.type = "button";
       b.textContent = k[1];
