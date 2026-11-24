@@ -5,7 +5,7 @@
 //   Nej tack laddar ingenting. Valet sparas i localStorage ("spekt-samtycke": "ja" eller "nej") på den här sajten.
 // - Kakorna gäller bara sajten där samtycket gavs (cookie_domain = sajtens eget namn). Inga annonsfunktioner.
 // - En länk med data-samtycke (i sidfoten: Kakor och statistik) öppnar rutan igen. Säger man Nej tack efter att ha
-//   godkänt tas Google Analytics-kakorna bort och sidan laddas om.
+//   godkänt stängs Google Analytics av, kakorna tas bort och sidan laddas om; med nej sparat rensas de på varje sida.
 // - Mätnings-id: aimotorn.se har ett eget, alla andra sajter samma.
 // - Länken till integritetssidan: data-integritet på script-taggen, annars /integritet.
 (function () {
@@ -36,6 +36,7 @@
   }
 
   function taBortKakor() {
+    if (!/(^|;\s*)_ga/.test(document.cookie)) return;
     var delar = location.hostname.split(".");
     var domaner = [""];
     for (var i = 0; i < delar.length - 1; i++) domaner.push(delar.slice(i).join("."));
@@ -79,7 +80,13 @@
     spara(v);
     stang();
     if (v === "ja") { laddaStatistik(); return; }
-    if (forut) { taBortKakor(); location.reload(); }
+    if (forut) {
+      // Google Analytics skriver sina kakor igen när sidan lämnas, så den stängs av innan kakorna tas bort.
+      window["ga-disable-" + ID] = true;
+      if (window.gtag) window.gtag("consent", "update", { analytics_storage: "denied" });
+      taBortKakor();
+      location.reload();
+    }
   }
 
   function visa(fokus) {
@@ -121,7 +128,8 @@
   function start() {
     var v = las();
     if (v === "ja") laddaStatistik();
-    else if (v !== "nej") visa(false);
+    else if (v === "nej") taBortKakor(); // ifall en kaka hann skrivas när valet ändrades
+    else visa(false);
     document.addEventListener("click", function (e) {
       var t = e.target && e.target.closest ? e.target.closest("[data-samtycke]") : null;
       if (!t) return;
