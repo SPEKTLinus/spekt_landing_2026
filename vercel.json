@@ -30,7 +30,7 @@
   "redirects": [
     {
       "source": "/agents{/}?",
-      "destination": "https://outreach.spekt.se/",
+      "destination": "https://aimotorn.se/",
       "permanent": false
     },
     {
